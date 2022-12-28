@@ -1,0 +1,22 @@
+
+// Title
+.header_carte{
+  height: 300px;
+  width: 100%;
+}
+
+
+.titre_position{
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+}
+
+.cover_dark{
+  position: relative;
+  height: 300px;
+  width: 100%;
+  background: #000;
+  opacity: 0.5;
+}
