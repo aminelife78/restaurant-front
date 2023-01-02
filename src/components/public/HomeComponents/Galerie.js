@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import baseUrl from "../../../Api/baseUrl";
+import baseUrlProd from "../../../Api/baseUrl";
 import axios from "axios";
 import { Container, Row, Col,Card,CardGroup } from "react-bootstrap";
 import "./homeComponent.scss"
@@ -9,7 +9,7 @@ const Galerie = () => {
 
   useEffect(function () {
     axios
-      .get(`${baseUrl}/api/v1/galerie`)
+      .get(`${baseUrlProd}/api/v1/galerie`)
       .then((response) => {
         const resultTab = response.data.data;
         setPhotos(resultTab);
@@ -28,7 +28,7 @@ const Galerie = () => {
           photos.map((photo) => {
             return (
               <Card className="  border-0 bg-dark  "  as={Col} key={photo.id}>
-                <Card.Img className="w-100 h-100 opacity-50" variant="top" src={baseUrl + "/galerie/" + photo.image} />
+                <Card.Img className="w-100 h-100 opacity-50" variant="top" src={baseUrlProd + "/galerie/" + photo.image} />
                 
                 <Card.Title className="position-absolute top-50 start-50 translate-middle text-white  fs-2 fw-bold card-image">{photo.title}</Card.Title>
                
