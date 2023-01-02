@@ -1,7 +1,7 @@
 import React from 'react'
 import {Navbar,Container, Nav} from "react-bootstrap"
 import {NavLink} from "react-router-dom"
-import logo from "../../../images/Logo.png"
+import logo from "../../../images/logo.svg"
 
 const NavBar = () => {
   return (
@@ -14,7 +14,6 @@ const NavBar = () => {
           <Nav.Link className={navInfo => navInfo.isActive? "nav-link bg-primary" : "nav-link " } as={NavLink}  to="/home">Accueil</Nav.Link>
           <Nav.Link as={NavLink} to="/carte">Carte</Nav.Link>
           <Nav.Link as={NavLink} to="/menu">Menu</Nav.Link>
-          <Nav.Link as={NavLink} to="/galery">Galery</Nav.Link>
           <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
           
         <Nav >

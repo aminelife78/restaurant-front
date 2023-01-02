@@ -6,16 +6,17 @@ import Category from "../../../components/public/Carte/Category";
 import CardListe from "../../../components/public/Carte/CardListe";
 import axios from 'axios';
 import Title from '../../../components/public/Global/Title';
+import baseUrlProd from '../../../Api/baseUrl';
 
 
 const Carte = () => {
   const [plats, setPlats] = useState()
   const [datas, setDatas] = useState(plats)
   const [repa, setRepa] = useState("")
- 
+
 
   useEffect(function (){
-    axios.get("http://localhost:5000/api/v1/plats").then((response) => {
+    axios.get(`${baseUrlProd}/api/v1/plats`).then((response) => {
       const resultTab = response.data.data
       setPlats(resultTab)   
       setDatas(resultTab) 

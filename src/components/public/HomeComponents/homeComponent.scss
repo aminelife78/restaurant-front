@@ -1,0 +1,21 @@
+@import "../../../style/variable";
+
+.position_text{
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+
+
+// style galerie
+.card-image{
+  color: transparent!important;
+}
+
+.card-image:hover{
+  color: white!important;
+  transition: 0.3s;
+
+}

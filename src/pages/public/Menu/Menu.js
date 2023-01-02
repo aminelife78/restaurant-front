@@ -1,11 +1,16 @@
-import React from "react";
+import { Fragment } from "react";
+import { Container } from "react-bootstrap";
 import Title from "../../../components/public/Global/Title";
+import Formule from "../../../components/public/Menu/Formule";
 
 const Menu = () => {
   return (
-    <div>
-      <Title title="Nos menus" />
-    </div>
+    <Fragment>
+      <Title title="Nos Menus" />
+      <Container>
+        <Formule />
+      </Container>
+    </Fragment>
   );
 };
 

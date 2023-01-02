@@ -1,12 +1,13 @@
 import { Card, Row ,Col} from 'react-bootstrap'
 import "./Carte.scss"
 import Zoom from 'react-reveal/Zoom';
+import baseUrlProd from '../../../Api/baseUrl';
 
 
 
 
 const CardListe = ({datas}) => {
-  const extImage = "http://localhost:5000/plats"
+
   
   return (
     <Zoom>
@@ -20,7 +21,7 @@ const CardListe = ({datas}) => {
                 <Col sm="12" className='mb-3' key={data.id}>
                 
                 <Card className='d-flex flex-row mb-3' bg='light' >
-                <Card.Img variant="left" src={extImage +"/" + data.image} className='img-item' />
+                <Card.Img variant="left" src={baseUrlProd +"/plats/" + data.image} className='img-item' />
                       <Card.Body>
                         
                           <Card.Title className='d-flex justify-content-between'>

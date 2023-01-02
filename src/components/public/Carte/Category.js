@@ -3,6 +3,7 @@ import { Row,Button, Col } from 'react-bootstrap'
 import "./Carte.scss"
 import Roll from 'react-reveal/Roll';
 import axios from 'axios';
+import baseUrlProd from '../../../Api/baseUrl';
 
 
 const Category = ({showRepas}) => {
@@ -10,7 +11,7 @@ const Category = ({showRepas}) => {
   const [allRepas, setAllRepas] = useState()
 
   useEffect(function (){
-    axios.get("http://localhost:5000/api/v1/categories").then((response) => {
+    axios.get(`${baseUrlProd}/api/v1/categories`).then((response) => {
       const resultTab = response.data.data
       setAllRepas(resultTab)
             
