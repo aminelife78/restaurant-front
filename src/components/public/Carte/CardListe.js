@@ -4,8 +4,6 @@ import Zoom from 'react-reveal/Zoom';
 import baseUrlProd from '../../../Api/baseUrl';
 
 
-
-
 const CardListe = ({datas}) => {
 
   

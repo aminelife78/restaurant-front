@@ -19,14 +19,14 @@ function Footer() {
 
   },[]);
 
-  console.log(heures)
+
 
   return (
-    <Card className="bg-dark text-white footer-container ">
+    <Card className="bg-dark text-white footer-container  ">
       <Card.Img src={footer} alt="footer" />
       
         <Card.Title>Footer</Card.Title>
-      <Card.ImgOverlay className='d-flex flex-column'>
+      <Card.ImgOverlay className='d-flex flex-column '>
         <Card.Title className='fw-bolder fs-3 text-white '>Nos horaires d ouverture</Card.Title>
         <table className="table table-borderless  text-white w-25">
             {

@@ -21,7 +21,7 @@ const RouterPublic = () => {
               <Route path="/menu" element={<Menu />} /> 
               <Route path="/contact" element={<Contact />} /> 
               <Route path="/reservation" element={<Reservation />} /> 
-           <Route path='*' element={<ErrorPage />} />  
+               <Route path='*' element={<ErrorPage />} />  
           </Route>  
       </Routes>
     
