@@ -23,7 +23,7 @@ const CardListe = ({datas}) => {
                       <Card.Body>
                         
                           <Card.Title className='d-flex justify-content-between'>
-                            <div className='text-secondary'>{data.titre.charAt(0).toUpperCase() + data.titre.slice(1)}</div>
+                            <div className='text-secondary'>{data.titre}</div>
                             <div className='text-succes'> {data.prix} euros</div>
                           </Card.Title>
                           
