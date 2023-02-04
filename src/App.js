@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import RouterAuth from "./pages/auth/RouterAuth";
 import RouterAdmin from "./pages/admin/RouterAdmin";
 import AuthVerify from "./_helper/AuthVerify";
+import NoDatas from "./utils/NoDatas";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           </AuthVerify>
         }
       />
+      <Route path="/nodatas" element={<NoDatas />} />
       <Route path="/auth/*" element={<RouterAuth />} />
     </Routes>
   );

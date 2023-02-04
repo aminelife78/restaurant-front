@@ -1,15 +1,19 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect ,useContext} from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import baseUrlProd from "../../../Api/baseUrl";
-import { accountService } from "../../../_services/account_services";
+import { galerieservice } from "../../../_services/galerie.services";
+import { categoryContext } from "../../../store/categoryContext";
+
+
 
 const Gupdate = () => {
   const navigate = useNavigate();
+  const galerieContext = useContext(categoryContext);
+
   const params = useParams();
   const index = params.id;
+  
 
   // const [data, setData] = useState();
   const [title,setTitle] = useState("");
@@ -18,16 +22,15 @@ const Gupdate = () => {
 
   useEffect(
     function () {
-      axios.get(`${baseUrlProd}/api/v1/galerie/${index}`).then((response) => {
-        const resultTab = response.data.result[0];
-        setTitle(title);
-        setImage(image)
-        console.log(resultTab);
+      galerieservice.getOneGalerie(index).then((response) => {
+        const resultTab = response.data.data[0];
+        setTitle(resultTab.title);
+        setImage(resultTab.image)
+              
       });
     },
-    [index,image,title]
+    [index]
   );
-
 
 
 
@@ -42,25 +45,20 @@ const Gupdate = () => {
   }
 
 
-
   const onsubmit = (e) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
 
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${accountService.getToken()}`
-      },
-    };
+ 
 
-    axios
-      .put(`${baseUrlProd}/api/v1/galerie/${index}`, formData, config)
+    galerieservice.updateGalerie(index,formData)
       .then((response) => {
+        const datas = response.data.data
+        galerieContext.setPhotos(datas)
+        
         navigate("/admin/galerie/liste");
-        console.log(formData);
       })
       .catch((error) => {
         console.log(error);
@@ -76,7 +74,7 @@ const Gupdate = () => {
         <Form onSubmit={onsubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>title</Form.Label>
-            <Form.Control type="text" name="title" value={title} onChange={setdata} />
+            <Form.Control type="text" name="title" value={title}  onChange={setdata} />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">

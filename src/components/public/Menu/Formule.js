@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 import axios from "axios"
 import MenuLists from "./MenuLists";
 import baseUrl from "../../../Api/baseUrl";
-
+import "./menu.scss"
 
 const Formule = () => {
   const [datas, setDatas] = useState()
@@ -19,14 +19,13 @@ const Formule = () => {
 
   
   return (
-    <div>
+    <div >
     {
       datas && datas.map(data=>{
         return (
-          <Card className="text-center mb-4 border-0 bg-light" key={data.id}>
-            <Card.Header className="text-primary fw-bold border-0 bg-white ">{data.name}</Card.Header>  
+          <Card className="text-center border-0 bg-light box-shadow  mybox p-3 mb-5 bg-body rounded" key={data.id}>
+            <Card.Header className="text-succes fs-2 fw-bold border-0 bg-white ">{data.name}</Card.Header>  
             <MenuLists   menus={data.name}/>
-            <hr className="text-succes"/>
           </Card>
         )
 

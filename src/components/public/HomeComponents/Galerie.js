@@ -19,7 +19,6 @@ const Galerie = () => {
       });
   }, []);
 
-  console.log(photos);
 
   return (
     <Container>
@@ -28,7 +27,7 @@ const Galerie = () => {
           photos.map((photo) => {
             return (
               <Card className="  border-0 bg-dark  "  as={Col} key={photo.id}>
-                <Card.Img className="w-100 h-100 opacity-50" variant="top" src={baseUrlProd + "/galerie/" + photo.image} />
+                <Card.Img className="w-100 h-100 opacity-50" variant="top" src={photo.image} />
                 
                 <Card.Title className="position-absolute top-50 start-50 translate-middle text-white  fs-2 fw-bold card-image">{photo.title}</Card.Title>
                

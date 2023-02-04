@@ -12,7 +12,7 @@ function Title({title}) {
             alt="myimg"
             />
             <div className='cover_dark'></div>
-            <h1 className="text-white fs-2  fw-bold text-center titre_position">{title && title.charAt(0).toUpperCase() + title.slice(1)}</h1>
+            <h1 className="text-white   fw-bold text-center titre_position">{title && title.charAt(0).toUpperCase() + title.slice(1)}</h1>
            
         </Col>
       </Row>      

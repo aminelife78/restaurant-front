@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState,useContext } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import baseUrlProd from "../../../Api/baseUrl";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { accountService } from "../../../_services/account_services";
+import { platservice } from "../../../_services/plats.services";
+import { categoryContext } from "../../../store/categoryContext";
 
 const CrAdd = () => {
   const navigate = useNavigate();
+  const categoriesContext = useContext(categoryContext)
+  
 
-  const [allCategories, setAllCategories] = useState();
 
   const [titre, setTitre] = useState("");
   const [descreption, setDescreption] = useState("");
@@ -18,7 +18,7 @@ const CrAdd = () => {
 
   const [err, setErr] = useState("");
 
-  console.log(err);
+ 
 
   const onsubmit = (e) => {
     e.preventDefault();
@@ -29,30 +29,19 @@ const CrAdd = () => {
     formData.append("descreption", descreption);
     formData.append("prix", prix);
     formData.append("categories_id", categories_id);
-    console.log(formData);
 
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${accountService.getToken()}`
-      },
-    };
-
-    axios
-      .post(`${baseUrlProd}/api/v1/plats`, formData, config)
+    platservice
+      .addPlat(formData)
       .then((response) => {
+        const data = response.data.data
+        categoriesContext.setAllPlats(data)
         navigate("/admin/carte/liste");
         setErr("");
       })
       .catch((error) => setErr(error.response.data.errors[0].msg));
   };
 
-  useEffect(function () {
-    axios.get(`${baseUrlProd}/api/v1/categories`).then((response) => {
-      const resultTab = response.data.data;
-      setAllCategories(resultTab);
-    });
-  }, []);
+
 
   return (
     <Container className="w-50 h-50 mt-5">
@@ -99,8 +88,8 @@ const CrAdd = () => {
           aria-label="Default select example"
         >
           <option>Choisi une categorie</option>
-          {allCategories &&
-            allCategories.map((category) => {
+          {categoriesContext.allCategories &&
+            categoriesContext.allCategories.map((category) => {
               return (
                 <option key={category.id} value={category.id}>
                   {category.name}
@@ -119,12 +108,4 @@ const CrAdd = () => {
 
 export default CrAdd;
 
-// <Form.Group className="mb-3" controlId="formBasicPrix">
-//     <Form.Control
-//     type="text"
-//     placeholder="Enter prix plat"
-//     name="categorie_id"
-//     onChange={(e)=>setCategories_id(e.target.value)}
-//     value={categories_id}
-//   />
-//   </Form.Group>
+

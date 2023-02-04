@@ -13,6 +13,7 @@ const Acarte = () => {
         <Nav.Item>
           <Nav.Link as={NavLink} to="/admin/carte/add">Ajouter plats</Nav.Link>
         </Nav.Item>
+        
     </Nav>
     <Outlet />
 

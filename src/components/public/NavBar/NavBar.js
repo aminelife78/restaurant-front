@@ -1,14 +1,15 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import logo from "../../../images/logo.svg";
+import { useState } from "react";
 import logaout from "../../../images/logaout.png";
 import { accountService } from "../../../_services/account_services";
 
 const NavBar = () => {
-  
-
+  const [first, setfirst] = useState(accountService.isLogged())
   const logout = () => {
     accountService.logout();
+    setfirst(accountService.isLogged()) 
   };
 
   return (
@@ -47,7 +48,12 @@ const NavBar = () => {
             <Nav.Link as={NavLink} to="/contact">
               Contact
             </Nav.Link>
-            {!accountService.isLogged? (
+            {!first? (
+              <Nav.Link as={NavLink} to="/auth/login">
+                {" "}
+                Connexion
+              </Nav.Link>
+            ) : (
               <Nav.Link
                 onClick={logout}
                 as={NavLink}
@@ -56,11 +62,6 @@ const NavBar = () => {
               >
                 <img className="w-25 h-auto" src={logaout} alt="logout" /> Log
                 out
-              </Nav.Link>
-            ) : (
-              <Nav.Link as={NavLink} to="/auth/login">
-                {" "}
-                Connexion
               </Nav.Link>
             )}
 

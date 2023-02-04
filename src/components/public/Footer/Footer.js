@@ -22,17 +22,17 @@ function Footer() {
 
 
   return (
-    <Card className="bg-dark text-white footer-container  ">
+    <Card className="bg-dark text-white footer-container   ">
       <Card.Img src={footer} alt="footer" />
       
-        <Card.Title>Footer</Card.Title>
+        
       <Card.ImgOverlay className='d-flex flex-column '>
-        <Card.Title className='fw-bolder fs-3 text-white '>Nos horaires d ouverture</Card.Title>
+        <Card.Title className='fw-bolder fs-3 text-white m-0 w-50 '>Nos horaires d ouverture</Card.Title>
         <table className="table table-borderless  text-white w-25">
             {
               heures && heures.map(heure=>{
                 return (
-                  <tbody className='fs-6 fw-bold' key={heure.id}>
+                  <tbody className='fs-6 fw-bold m-0' key={heure.id}>
                       <tr >
                         <td>{heure.jours}</td>
                         <td className='text-secondary  '>{heure.heure_matin?heure.heure_matin:heure.heure_soir}</td>
@@ -47,7 +47,7 @@ function Footer() {
               })
             }
           </table>
-          <Card.Text className='text-center'>Copyright ©2023 Tous droits réservés | Ce modèle est fait par Amine</Card.Text>
+          <Card.Text className='text-center footer-position'>Copyright ©2023 Tous droits réservés | Ce modèle est fait par Amine</Card.Text>
 
       </Card.ImgOverlay>
       

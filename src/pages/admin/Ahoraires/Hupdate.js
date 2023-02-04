@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import baseUrlProd from "../../../Api/baseUrl";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { accountService } from "../../../_services/account_services";
+import { heureservice } from "../../../_services/heure.services";
 
 const Hupdate = () => {
   const navigate = useNavigate();
@@ -17,29 +15,29 @@ const Hupdate = () => {
   // recuperer liste horaires
   useEffect(
     function () {
-      axios.get(`${baseUrlProd}/api/v1/horaires/${index}`).then((response) => {
+      heureservice.getOneheure(index).then((response) => {
         const resultTab = response.data.data;
-        setJours(resultTab[0].jours)
+        setJours(resultTab[0].jours);
         setHeure_matin(resultTab[0].heure_matin);
-        setHeure_soir(resultTab[0].heure_soir)
+        setHeure_soir(resultTab[0].heure_soir);
       });
     },
     [index]
   );
 
- 
-
   const onsubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .put(`${baseUrlProd}/api/v1/horaires/${index}`, {jours:jours,heure_matin:heure_matin,heure_soir:heure_soir}, {
-        headers: { "Content-Type": "application/json",Authorization: `Bearer ${accountService.getToken()}` },
+    heureservice
+      .updateheure(index, {
+        jours: jours,
+        heure_matin: heure_matin,
+        heure_soir: heure_soir,
       })
       .then((response) => {
-        setHeure_matin("")
-        setHeure_soir("")
-        setJours("")
+        setHeure_matin("");
+        setHeure_soir("");
+        setJours("");
         setErr("");
         navigate("/admin/horaires/liste");
       })
@@ -54,7 +52,7 @@ const Hupdate = () => {
             type="text"
             placeholder="Enter Jour"
             name="jours"
-            onChange={(e)=>setJours(e.target.value)}
+            onChange={(e) => setJours(e.target.value)}
             value={jours}
             disabled
           />
@@ -65,7 +63,7 @@ const Hupdate = () => {
             type="text"
             placeholder="Enter horaires matin"
             name="heure_matin"
-            onChange={(e)=>setHeure_matin(e.target.value)}
+            onChange={(e) => setHeure_matin(e.target.value)}
             value={heure_matin}
           />
           <Form.Text className="text-muted text-secondary">{err}</Form.Text>
@@ -75,7 +73,7 @@ const Hupdate = () => {
             type="text"
             placeholder="Enter horaires soir"
             name="heure_soir"
-            onChange={(e)=>setHeure_soir(e.target.value)}
+            onChange={(e) => setHeure_soir(e.target.value)}
             value={heure_soir}
           />
           <Form.Text className="text-muted text-secondary">{err}</Form.Text>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Button, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import baseUrlProd from "../../../Api/baseUrl";
+import { heureservice } from "../../../_services/heure.services";
+
+
 
 
 const Hliste = () => {
@@ -11,7 +12,7 @@ const Hliste = () => {
   
   // recuperer liste horaires
   useEffect(function () {
-    axios.get(`${baseUrlProd}/api/v1/horaires`).then((response) => {
+    heureservice.getAllHeures().then((response) => {
       const resultTab = response.data.data;
       setHoraires(resultTab);
     });

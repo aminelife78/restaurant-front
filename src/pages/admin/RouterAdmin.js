@@ -21,6 +21,13 @@ import Gadd from "./Agaleries/Gadd";
 import Gupdate from "./Agaleries/Gupdate";
 import Hliste from "./Ahoraires/Hliste"
 import Hupdate from "./Ahoraires/Hupdate";
+import Mliste from "./Amenu/Mliste";
+import Madd from "./Amenu/Madd";
+import Mupdate from "./Amenu/Mupdate";
+import Aformule from "./Aformules/Aformule";
+import Fliste from "./Aformules/Fliste";
+import Fadd from "./Aformules/Fadd";
+import Fupdate from "./Aformules/Fupdate";
 
 
 const RouterAdmin = () => {
@@ -41,7 +48,20 @@ const RouterAdmin = () => {
               <Route path="add" element={< CrAdd/>} />
               <Route path="update/:id" element={<CrUpdate />} />
           </Route>
-          <Route path="/menu" element={<Amenu />} />
+          <Route path="/menu" element={<Amenu />} > 
+                <Route index element={<Mliste />} />
+                <Route path="liste" element={<Mliste />} />
+                <Route path="add" element={< Madd/>} />
+                <Route path="update/:id" element={<Mupdate/>}/>
+
+          </Route>
+          <Route path="/formule" element={<Aformule />} > 
+                <Route index element={<Fliste />} />
+                <Route path="liste" element={<Fliste />} />
+                <Route path="add" element={< Fadd/>} />
+                <Route path="update/:id" element={<Fupdate/>}/>
+
+          </Route>
           <Route path="/galerie" element={<Agalerie />} >
                 <Route index element={<Gliste />} />
                 <Route path="liste" element={<Gliste />} />

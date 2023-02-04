@@ -1,13 +1,11 @@
 import React from 'react'
-import Title from '../../../components/public/Global/Title'
 
-const Resrvation = () => {
+const Reservation = () => {
   return (
     <div>
-      <Title title='Réservation' />
       reservation
     </div>
   )
 }
 
-export default Resrvation
+export default Reservation

@@ -26,7 +26,6 @@ const MenuLists = ({menus}) => {
     )
   })
  
-  console.log(results)
 
  
   
@@ -37,9 +36,9 @@ const MenuLists = ({menus}) => {
       return (
         <Fragment key={result.id}>
         <Card.Body >
-            <Card.Title className="text-secondary">{result.title}</Card.Title>
+            <Card.Title className="text-secondary fw-bold fs-5">{result.title}</Card.Title>
             <Card.Text>
-              {result.descreption} <span className="text-primary fw-bold">{result.prix} €</span>
+              {result.descreption} <span className="text-primary fw-bolder">{result.prix} €</span>
             </Card.Text>
           
         </Card.Body>

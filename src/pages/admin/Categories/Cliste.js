@@ -1,42 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Button, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import baseUrlProd from "../../../Api/baseUrl";
-import { accountService } from "../../../_services/account_services";
-
+import { categorieService } from "../../../_services/categories.service";
+import { categoryContext } from "../../../store/categoryContext";
 
 const Liste = () => {
   const navigate = useNavigate();
-  const [allCategories, setAllCategories] = useState([]);
-  
-  // recuperer liste de categories
-  useEffect(function () {
-    axios.get(`${baseUrlProd}/api/v1/categories`).then((response) => {
-      const resultTab = response.data.data;
-      setAllCategories(resultTab);
-    });
-  }, []);
 
+  const categoriesContext = useContext(categoryContext)
+ 
   // suprimer une categorie
-
   const deleteCategory = (index) => {
-    axios
-      .delete(`${baseUrlProd}/api/v1/categories/${index}`,{
-        headers: { Authorization: `Bearer ${accountService.getToken()}` },
-      })
+    categorieService
+      .deleteCategory(index)
       .then((res) => {
         const datas = res.data.data;
-        setAllCategories(datas);
-        
+        categoriesContext.setAllCategories(datas);
+       
       })
       .catch((err) => {
         console.log("il y a une erreur " + err);
+        
       });
   };
 
+
   return (
-    
     <Table>
       <thead>
         <tr>
@@ -45,10 +34,11 @@ const Liste = () => {
         </tr>
       </thead>
       <tbody>
-        {allCategories &&
-          allCategories.map((category) => {
+        {categoriesContext.loading ? (
+          <tr><td>pas de données</td></tr>
+        ) : (
+          categoriesContext.allCategories.map((category) => {
             return (
-              
               <tr key={category.id}>
                 <td>{category.id}</td>
                 <td>{category.name}</td>
@@ -71,13 +61,11 @@ const Liste = () => {
                   </Button>
                 </td>
               </tr>
-          
-
             );
-          })}
+          })
+        )}
       </tbody>
     </Table>
-   
   );
 };
 

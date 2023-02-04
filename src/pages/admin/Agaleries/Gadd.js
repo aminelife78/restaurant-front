@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import baseUrlProd from "../../../Api/baseUrl";
-import { accountService } from "../../../_services/account_services";
+import { galerieservice } from "../../../_services/galerie.services";
+import { categoryContext } from "../../../store/categoryContext";
 
 const Gadd = () => {
   const navigate = useNavigate();
+  const galerieContext = useContext(categoryContext);
+
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
 
@@ -19,23 +20,17 @@ const Gadd = () => {
     setImage(e.target.files[0]);
   };
 
-  const addUserData = (e) => {
+  const addPhotos = (e) => {
     e.preventDefault();
     var formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
-    console.log(formData);
 
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${accountService.getToken()}`,
-      },
-    };
-
-    axios
-      .post(`${baseUrlProd}/api/v1/galerie`, formData, config)
+    galerieservice
+      .addGalerie(formData)
       .then((response) => {
+        const photos = response.data.data;
+        galerieContext.setPhotos(photos);
         navigate("/admin/galerie/liste");
       })
       .catch((error) => {
@@ -48,7 +43,7 @@ const Gadd = () => {
       <div className="container mt-3">
         <h1>Upload Your Img Here</h1>
 
-        <Form onSubmit={addUserData}>
+        <Form onSubmit={addPhotos}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>title</Form.Label>
             <Form.Control type="text" name="title" onChange={setdata} />

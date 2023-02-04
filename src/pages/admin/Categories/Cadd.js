@@ -1,45 +1,39 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import baseUrlProd from "../../../Api/baseUrl";
-import axios from "axios";
+import { categoryContext } from "../../../store/categoryContext";
 import { useNavigate } from "react-router-dom";
-import { accountService } from "../../../_services/account_services";
+import { categorieService } from "../../../_services/categories.service";
 
 const Add = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const categoriesContext = useContext(categoryContext)
 
-  const [categorie, setcategorie] = useState({name:""});
-  const [err, setErr] = useState("")
+
+  const [categorie, setcategorie] = useState({ name: "" });
+  const [err, setErr] = useState("");
   const addcategorie = (e) => {
-    setcategorie({name:e.target.value});
+    setcategorie({ name: e.target.value });
   };
 
   const onsubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post(`${baseUrlProd}/api/v1/categories`, categorie, {
-        headers: { "Content-Type": "application/json",Authorization: `Bearer ${accountService.getToken()}` },
-      })
+    categorieService
+      .addCategory(categorie)
       .then((response) => {
-        setcategorie({name:""})
+        const categories = response.data.data
+        categoriesContext.setAllCategories(categories)
+        setcategorie({ name: "" });
         setErr("");
-        navigate("/admin/categories/liste")
-        
+        navigate("/admin/categories/liste");
       })
       .catch((error) => setErr(error.response.data.errors[0].msg));
-
-      
   };
 
- 
-
   return (
-    
     <Container className="w-50 h-50 mt-5">
       <Form onSubmit={onsubmit}>
         <Form.Group classcategorie="mb-3" controlId="formBasicEmail">
-          
           <Form.Control
             type="text"
             placeholder="Enter categorie"
@@ -53,8 +47,7 @@ const Add = () => {
           Ajouter
         </Button>
       </Form>
-      </Container>
- 
+    </Container>
   );
 };
 

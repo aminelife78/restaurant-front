@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { accountService } from "../../../_services/account_services";
 import { useNavigate } from "react-router-dom";
-import baseUrlProd from "../../../Api/baseUrl";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,20 +14,15 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post(`${baseUrlProd}/api/v1/auth/login`, login, {
-        headers: { "Content-Type": "application/json" },
-      })
+    accountService
+      .login(login)
       .then((response) => {
         accountService.saveToken(response.data.token);
-        if(accountService.getTokenInfo().userRole === "admin"){
+        if (accountService.getTokenInfo().userRole === "admin") {
           navigate("/admin");
-        }else{
-          navigate("/reservation")
+        } else {
+          navigate("/reservation");
         }
-        
-        
-       
       })
       .catch((error) => console.log(error));
     setLogin({ email: "", password: "" });
