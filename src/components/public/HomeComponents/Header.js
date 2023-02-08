@@ -10,6 +10,7 @@ const Header = () => {
       <Row>
         <Col>
           <img
+          
             className="img-fluid d-block w-100 vh-100 opacity-50"
             src={header}
             alt="First slide"

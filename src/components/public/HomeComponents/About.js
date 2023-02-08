@@ -8,7 +8,7 @@ const About = () => {
       <Row className="pt-5 ">
         <Col sm="12" className="mb-3 ">
           <Card className="d-flex flex-lg-row mb-3  " bg="light">
-            <Card.Img variant="left" src={histoire} className="histoire " />
+            <Card.Img  variant="left" src={histoire} className="histoire " />
             <Card.Body>
               <Card.Title className="d-flex justify-content-center pt-5 ">
                 <div className="text-succes text-center w-50 fs-1 ">
