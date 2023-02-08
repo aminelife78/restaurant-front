@@ -22,15 +22,14 @@ const Gadd = () => {
 
   const addPhotos = (e) => {
     e.preventDefault();
-    var formData = new FormData();
+    const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
 
     galerieservice
       .addGalerie(formData)
       .then((response) => {
-        const photos = response.data.data;
-        galerieContext.setPhotos(photos);
+        galerieContext.getGaleries()
         navigate("/admin/galerie/liste");
       })
       .catch((error) => {

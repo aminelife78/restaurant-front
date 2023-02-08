@@ -7,15 +7,14 @@ import { categoryContext } from "../../../store/categoryContext";
 const Fliste = () => {
   const navigate = useNavigate();
 
-  const categoriesContext = useContext(categoryContext);
+  const formuleContext = useContext(categoryContext);
 
   // suprimer une categorie
   const deleteFormule = (index) => {
     formuleservice
       .deleteFormule(index)
       .then((res) => {
-        const datas = res.data.data;
-        categoriesContext.setAllFormules(datas);
+        formuleContext.getFormules()
         navigate("/admin/formule/liste")
       })
       .catch((err) => {
@@ -35,12 +34,12 @@ const Fliste = () => {
         </tr>
       </thead>
       <tbody>
-        {categoriesContext.loading ? (
+        {formuleContext.loading ? (
           <tr>
             <td>pas de données</td>
           </tr>
         ) : (
-          categoriesContext.allFormules.map((formule) => {
+          formuleContext.allFormules.map((formule) => {
             return (
               <tr key={formule.id}>
                 <td>{formule.id}</td>

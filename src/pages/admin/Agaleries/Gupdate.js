@@ -55,8 +55,7 @@ const Gupdate = () => {
 
     galerieservice.updateGalerie(index,formData)
       .then((response) => {
-        const datas = response.data.data
-        galerieContext.setPhotos(datas)
+        galerieContext.getGaleries()
         
         navigate("/admin/galerie/liste");
       })

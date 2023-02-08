@@ -6,7 +6,7 @@ import { menuservice } from "../../../_services/menu.services";
 
 const Madd = () => {
   const navigate = useNavigate();
-  const categoriesContext = useContext(categoryContext);
+  const menuContext = useContext(categoryContext);
 
   const [menu, setMenu] = useState({ name: "" });
   const [err, setErr] = useState("");
@@ -20,8 +20,7 @@ const Madd = () => {
     menuservice
       .addMenus(menu)
       .then((response) => {
-        const menus = response.data.data;
-        categoriesContext.setAllMenus(menus);
+        menuContext.getMenu()
         setMenu({ name: "" });
         setErr("");
         navigate("/admin/menu/liste");

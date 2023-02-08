@@ -5,7 +5,7 @@ import { menuservice } from "../../../_services/menu.services";
 import { categoryContext } from "../../../store/categoryContext";
 
 const Mliste = () => {
-  const categoriesContext = useContext(categoryContext);
+  const menuContext = useContext(categoryContext);
   const navigate = useNavigate();
 
   // suprimer un menu
@@ -13,8 +13,7 @@ const Mliste = () => {
     menuservice
       .deleteMenu(index)
       .then((res) => {
-        const datas = res.data.data;
-        categoriesContext.setAllMenus(datas);
+        menuContext.getMenu()
         navigate(`/admin/menu/liste`)
       })
       .catch((err) => {
@@ -31,10 +30,10 @@ const Mliste = () => {
         </tr>
       </thead>
       <tbody>
-        {categoriesContext.loading ? (
+        {menuContext.loading ? (
           <tr><td>pas de données</td></tr>
         ) : (
-          categoriesContext.allMenus.map((menu) => {
+          menuContext.allMenus.map((menu) => {
             return (
               <tr key={menu.id}>
                 <td>{menu.id}</td>

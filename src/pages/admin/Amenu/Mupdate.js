@@ -6,7 +6,7 @@ import { menuservice } from "../../../_services/menu.services";
 
 const Mupdate = () => {
   const navigate = useNavigate();
-  const categoriesContext = useContext(categoryContext);
+  const menuContext = useContext(categoryContext);
   const params = useParams();
   const index = params.id;
   
@@ -39,8 +39,7 @@ const Mupdate = () => {
     menuservice
       .updateMenu(index,menu)
       .then((response) => {
-        const menus = response.data.data;
-        categoriesContext.setAllMenus(menus);
+        menuContext.getMenu()
         setMenu({ name: "" });
         setErr("");
         navigate("/admin/menu/liste");

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { categoryContext } from "../../../store/categoryContext";
@@ -6,10 +6,11 @@ import { platservice } from "../../../_services/plats.services";
 
 const CrAdd = () => {
   const navigate = useNavigate();
-  const galerieContext = useContext(categoryContext);
+  const platsContext = useContext(categoryContext);
   const params = useParams();
   const index = params.id;
- 
+
+
 
 
   const [titre, setTitre] = useState("");
@@ -19,6 +20,22 @@ const CrAdd = () => {
   const [image, setImage] = useState("");
 
   const [err, setErr] = useState("");
+
+    // recuperer un plat par id
+    useEffect(
+      function () {
+        platservice.getOnePlat(index).then((response) => {
+          const resultTab = response.data.data[0];
+          setTitre(resultTab.titre)
+          setDescreption(resultTab.descreption) 
+          setPrix(resultTab.prix)
+          setCategories_id(resultTab.categories_id)
+          setImage(resultTab.image)
+                  
+        });
+      },
+      [index]
+    );
 
   
 
@@ -36,7 +53,7 @@ const CrAdd = () => {
     platservice
       .updatePlat(index, formData)
       .then((response) => {
-        galerieContext.setAllPlats(response.data.data);
+        platsContext.getPlats()
         navigate("/admin/carte/liste");
 
         setErr("");
@@ -89,8 +106,8 @@ const CrAdd = () => {
           aria-label="Default select example"
         >
           <option>Choisi une categorie</option>
-          {galerieContext.allCategories &&
-            galerieContext.allCategories.map((category) => {
+          {platsContext.allCategories &&
+            platsContext.allCategories.map((category) => {
               return (
                 <option key={category.id} value={category.id}>
                   {category.name}

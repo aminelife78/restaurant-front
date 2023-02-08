@@ -6,7 +6,7 @@ import { formuleservice } from "../../../_services/formule.services";
 
 function Fadd() {
   const navigate = useNavigate();
-  const categoriesContext = useContext(categoryContext);
+  const formuleContext = useContext(categoryContext);
   
 
   const [datas, setDatas] = useState({
@@ -26,8 +26,7 @@ function Fadd() {
     e.preventDefault();
   formuleservice.addFormule(datas)
       .then((response) => {
-        const data = response.data.data
-        categoriesContext.setAllFormules(data)
+        formuleContext.getFormules()
         navigate("/admin/formule/liste")
           setDatas({
             title: "",
@@ -94,8 +93,8 @@ function Fadd() {
                       aria-label="Default select example"
                     >
                       <option>Choisi un menu</option>
-                      {categoriesContext.allMenus &&
-                        categoriesContext.allMenus.map((menu) => {
+                      {formuleContext.allMenus &&
+                        formuleContext.allMenus.map((menu) => {
                           return (
                             <option key={menu.id} value={menu.id}>
                               {menu.name}

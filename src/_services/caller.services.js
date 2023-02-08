@@ -4,7 +4,7 @@ import { accountService } from "./account_services";
 // Paramétrage de base d'axios
 const Axios = axios.create({
   // baseURL: "http://localhost:5000",
-  baseURL: "https://api-restaurant-production.up.railway.app/",
+  baseURL: "https://api-restaurant-production.up.railway.app",
 });
 
 // Intercepteur pour la mise en place du token dans la requête

@@ -21,8 +21,7 @@ const Add = () => {
     categorieService
       .addCategory(categorie)
       .then((response) => {
-        const categories = response.data.data
-        categoriesContext.setAllCategories(categories)
+        categoriesContext.getCategories()
         setcategorie({ name: "" });
         setErr("");
         navigate("/admin/categories/liste");

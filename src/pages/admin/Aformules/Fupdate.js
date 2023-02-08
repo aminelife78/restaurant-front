@@ -9,7 +9,7 @@ function Fupdate() {
   const params = useParams();
   const index = params.id;
 
-  const categoriesContext = useContext(categoryContext);
+  const formuleContext = useContext(categoryContext);
   const [datas, setDatas] = useState({
     title: "",
     descreption: "",
@@ -37,8 +37,7 @@ function Fupdate() {
     formuleservice
       .updateFormule(index, datas)
       .then((response) => {
-        const data = response.data.data;
-        categoriesContext.setAllFormules(data);
+        formuleContext.getFormules()
         setDatas({
           title: "",
           descreption: "",
@@ -98,8 +97,8 @@ function Fupdate() {
                     aria-label="Default select example"
                   >
                     <option>Choisi un menu</option>
-                    {categoriesContext.allMenus &&
-                      categoriesContext.allMenus.map((menu) => {
+                    {formuleContext.allMenus &&
+                      formuleContext.allMenus.map((menu) => {
                         return (
                           <option key={menu.id} value={menu.id}>
                             {menu.name}

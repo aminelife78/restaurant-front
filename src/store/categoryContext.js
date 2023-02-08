@@ -15,7 +15,7 @@ const ContexteCtegory = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   // recuperer liste de categories
-  useEffect(function () {
+  const getCategories = ()=>{
     categorieService
       .getAllCategories()
       .then((response) => {
@@ -27,81 +27,101 @@ const ContexteCtegory = ({ children }) => {
         console.log("il y a une erreur " + err);
         setLoading(true);
       });
+  }
+  useEffect(function () {
+    getCategories()
   }, []);
 
   // recuperer liste de plats
-  useEffect(function () {
+  const getPlats = ()=>{
     platservice
-      .getAllPlats()
-      .then((response) => {
-        const resultTab = response.data.data;
-        setAllPlats(resultTab);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log("il y a une erreur " + err);
-        setLoading(true);
-      });
+    .getAllPlats()
+    .then((response) => {
+      const resultTab = response.data.data;
+      setAllPlats(resultTab);
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.log("il y a une erreur " + err);
+      setLoading(true);
+    });
+  }
+  useEffect(function () {
+    getPlats()
   }, []);
 
   // recuperer image de galerie
-
+const getGaleries = ()=>{
+  galerieservice
+  .getAllGaleries()
+  .then((response) => {
+    const resultTab = response.data.data;
+    setPhotos(resultTab);
+    setLoading(false);
+  })
+  .catch((err) => {
+    console.log("il y a une erreur " + err);
+    setLoading(true);
+  });
+}
   useEffect(function () {
-    galerieservice
-      .getAllGaleries()
-      .then((response) => {
-        const resultTab = response.data.data;
-        setPhotos(resultTab);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log("il y a une erreur " + err);
-        setLoading(true);
-      });
+    getGaleries()
   }, []);
 
   // recuperer name de menus
-  useEffect(function () {
+  
+  const getMenu = ()=>{
     menuservice
-      .getAllmenu()
-      .then((response) => {
-        const resultTab = response.data.data;
-        setAllMenus(resultTab);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log("il y a une erreur " + err);
-        setLoading(true);
-      });
+    .getAllmenu()
+    .then((response) => {
+      const resultTab = response.data.data;
+      setAllMenus(resultTab);
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.log("il y a une erreur " + err);
+      setLoading(true);
+    });
+  }
+  useEffect(function () {
+    getMenu()
   }, []);
 
   // recupetrer formules
-  useEffect(function () {
+  const getFormules = ()=>{
     formuleservice
-      .getAllformules()
-      .then((response) => {
-        const resultTab = response.data.data;
-        setAllFormules(resultTab);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log("il y a une erreur " + err);
-        setLoading(true);
-      });
+    .getAllformules()
+    .then((response) => {
+      const resultTab = response.data.data;
+      setAllFormules(resultTab);
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.log("il y a une erreur " + err);
+      setLoading(true);
+    });
+  }
+  useEffect(function () {
+    getFormules()
   }, []);
 
   return (
     <categoryContext.Provider
       value={{
+        getCategories,
         allCategories,
         loading,
         setAllCategories,
+        getPlats,
         allPlats,
         setAllPlats,
+        getGaleries,
         photos,
         setPhotos,
+        getMenu,
         allMenus,
         setAllMenus,
+        getFormules,
         allFormules,
         setAllFormules,
       }}

@@ -33,8 +33,7 @@ const CrAdd = () => {
     platservice
       .addPlat(formData)
       .then((response) => {
-        const data = response.data.data
-        categoriesContext.setAllPlats(data)
+        categoriesContext.getPlats()
         navigate("/admin/carte/liste");
         setErr("");
       })

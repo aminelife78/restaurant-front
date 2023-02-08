@@ -36,8 +36,7 @@ const Update = () => {
     categorieService
       .updateCategory(index, data)
       .then((response) => {
-        const datas = response.data.data;
-        categoriesContext.setAllCategories(datas);
+        categoriesContext.getCategories()
         setData({ name: "" });
         setErr("");
         navigate("/admin/categories/liste");

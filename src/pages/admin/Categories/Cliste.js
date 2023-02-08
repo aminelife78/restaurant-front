@@ -14,8 +14,7 @@ const Liste = () => {
     categorieService
       .deleteCategory(index)
       .then((res) => {
-        const datas = res.data.data;
-        categoriesContext.setAllCategories(datas);
+        categoriesContext.getCategories()
        
       })
       .catch((err) => {
