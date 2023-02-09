@@ -2,14 +2,15 @@ import { useState,useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import footer from '../../../images/footer.jpg'
 import "./Footer.scss"
-import axios from "axios"
-import baseUrl from '../../../Api/baseUrl';
+// import axios from "axios"
+// import baseUrl from '../../../Api/baseUrl';
+import { heureservice } from '../../../_services/heure.services';
 
 
 function Footer() {
   const [heures, setHeures] = useState()
   useEffect(function (){
-    axios.get(`${baseUrl}/api/v1/horaires`).then((response) => {
+    heureservice.getAllHeures().then((response) => {
       const resultTab = response.data.data
       setHeures(resultTab)   
       

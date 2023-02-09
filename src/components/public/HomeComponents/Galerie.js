@@ -1,23 +1,11 @@
-import React, { useEffect, useState } from "react";
-import baseUrlProd from "../../../Api/baseUrl";
-import axios from "axios";
+import React, { useContext } from "react";
 import { Container, Row, Col, Card, CardGroup } from "react-bootstrap";
 import "./homeComponent.scss";
+import { categoryContext } from "../../../store/categoryContext";
 
 const Galerie = () => {
-  const [photos, setPhotos] = useState();
+  const galerieContext = useContext(categoryContext);
 
-  useEffect(function () {
-    axios
-      .get(`${baseUrlProd}/api/v1/galerie`)
-      .then((response) => {
-        const resultTab = response.data.data;
-        setPhotos(resultTab);
-      })
-      .catch((err) => {
-        console.log("il y a une erreur " + err);
-      });
-  }, []);
 
   return (
     <Container>
@@ -25,8 +13,8 @@ const Galerie = () => {
         className=" py-5 flex-lg-row flex-column align-content-center"
         as={Row}
       >
-        {photos &&
-          photos.map((photo) => {
+        {galerieContext.loading &&
+          galerieContext.photos.map((photo) => {
             return (
               <Card className="  border-0 bg-dark " as={Col} key={photo.id}>
                 <div className="content-card  mb-3 ">

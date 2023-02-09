@@ -4,9 +4,10 @@ import { Fragment } from "react";
 
 import Category from "../../../components/public/Carte/Category";
 import CardListe from "../../../components/public/Carte/CardListe";
-import axios from 'axios';
+// import axios from 'axios';
 import Title from '../../../components/public/Global/Title';
-import baseUrlProd from '../../../Api/baseUrl';
+// import baseUrlProd from '../../../Api/baseUrl';
+import { platservice } from '../../../_services/plats.services';
 
 const Carte = () => {
   const [plats, setPlats] = useState()
@@ -14,7 +15,7 @@ const Carte = () => {
   const [repa, setRepa] = useState("")
 
   useEffect(function (){
-    axios.get(`${baseUrlProd}/api/v1/plats?nameCategory=`).then((response) => {
+    platservice.getAllPlats().then((response) => {
       const resultTab = response.data.data
       setPlats(resultTab)
       setDatas(resultTab)

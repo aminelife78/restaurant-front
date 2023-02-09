@@ -1,14 +1,15 @@
 import React,{useEffect,useState} from "react";
 import { Card } from "react-bootstrap";
-import axios from "axios"
+// import axios from "axios"
 import MenuLists from "./MenuLists";
-import baseUrl from "../../../Api/baseUrl";
+// import baseUrl from "../../../Api/baseUrl";
 import "./menu.scss"
+import { menuservice } from "../../../_services/menu.services";
 
 const Formule = () => {
   const [datas, setDatas] = useState()
   useEffect(function (){
-    axios.get(`${baseUrl}/api/v1/menus`).then((response) => {
+    menuservice.getAllmenu().then((response) => {
       const resultTab = response.data.data
       setDatas(resultTab)
     }).catch(err=>{

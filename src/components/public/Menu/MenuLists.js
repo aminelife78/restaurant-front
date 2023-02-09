@@ -1,7 +1,8 @@
 import React,{ Fragment, useEffect,useState} from "react";
 import { Card } from 'react-bootstrap'
-import axios from "axios"
-import baseUrl from "../../../Api/baseUrl";
+// import axios from "axios"
+// import baseUrl from "../../../Api/baseUrl";
+import { formuleservice } from "../../../_services/formule.services";
 
 
 const MenuLists = ({menus}) => {
@@ -9,7 +10,7 @@ const MenuLists = ({menus}) => {
  
 
   useEffect(function (){
-    axios.get(`${baseUrl}/api/v1/formules`).then((response) => {
+    formuleservice.getAllformules().then((response) => {
       const resultTab = response.data.data
       setFormules(resultTab)
       
