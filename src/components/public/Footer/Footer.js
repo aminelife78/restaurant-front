@@ -2,8 +2,6 @@ import { useState,useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import footer from '../../../images/footer.jpg'
 import "./Footer.scss"
-// import axios from "axios"
-// import baseUrl from '../../../Api/baseUrl';
 import { heureservice } from '../../../_services/heure.services';
 
 
