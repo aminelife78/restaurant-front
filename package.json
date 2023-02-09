@@ -38,6 +38,8 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
+    ],
+    "homepage": "https://api-restaurant-production.up.railway.app",
+    "main": "index.js"
   }
 }
