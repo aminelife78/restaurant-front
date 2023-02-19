@@ -1,47 +1,36 @@
-import React, { useState,useEffect } from "react";
-import { Container, Row, Col, Card, CardGroup } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Container, Row, Col} from "react-bootstrap";
 import "./homeComponent.scss";
-import { galerieservice } from "../../../_services/galerie.services";
+import { categoryContext } from "../../../store/categoryContext";
 
 const Galerie = () => {
-  const [photos, setPhotos] = useState([])
- 
-
-  useEffect(function (){
-    galerieservice.getAllGaleries().then((response) => {
-      const resultTab = response.data.data
-      setPhotos(resultTab)
-      
-    }).catch(err=>{
-      console.log("il y a une erreur " + err)
-    })
-
-  },[]);
+  const galerieContext = useContext(categoryContext);
 
   return (
     <Container>
-      <CardGroup
+      <h2 className="fw-bold fs-2 text-succes text-center text-capitalize pt-5">notre galerie d&apos;images</h2>
+      <div className="separator m-auto mt-4"></div>
+      <Row
         className=" py-5 flex-lg-row flex-column align-content-center"
-        as={Row}
+
       >
-        {photos &&
-          photos.map((photo) => {
+        {galerieContext.photos &&
+          galerieContext.photos.map((photo) => {
             return (
-              <Card className="  border-0 bg-dark " as={Col} key={photo.id}>
-                <div className="content-card  mb-3 ">
-                  <Card.Img
-                    className="w-100 h-100 opacity-75"
-                    variant="top"
-                    src={photo.image}
-                  />
-                  <Card.Title className="position-absolute top-50 start-50 translate-middle text-white text-center text-capitalize  fs-2 fw-bold w-100 card-image ">
-                    {photo.title}
-                  </Card.Title>
-                </div>
-              </Card>
+              <Col className=" rounded  p-0 m-4 card-galerie "  key={photo.id}>
+                <img
+                  className="rounded"
+                  variant="top"
+                  src={photo.image}
+                  alt="galerie"
+                />
+                <h5 className="position-absolute top-50 start-50 translate-middle fw-bold text-dark text-center text-capitalize  fs-2  ">
+                  {photo.title}
+                </h5>
+              </Col>
             );
           })}
-      </CardGroup>
+      </Row>
     </Container>
   );
 };

@@ -1,21 +1,53 @@
 @import "../../../style/variable";
 
+// header
 .position_text{
   position: absolute;
-  top: 70%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   
 }
 
+// about
+  .about-img{
+    max-width: 400px;
+  }
+
 
 // style galerie
-.card-image{
-  color: transparent!important;
+
+
+.card-galerie{
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.card-galerie .card-title{
+  opacity: 0;
+  
+  
 }
 
-.content-card:hover .card-image{
-  color: white!important;
+// galerie hover
+.card-galerie:hover .card-title{
+  opacity: 1;
+  display: inline;
+  transition: 0.4s;
+ 
+
+}
+
+.card-galerie:hover{
+  transform: scale(1.01);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   transition: 0.3s;
-
 }
+
+
+.card-galerie:hover  img{
+  opacity: 0.7;
+  
+
+  
+}
+
+

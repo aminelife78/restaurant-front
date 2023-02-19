@@ -5,7 +5,10 @@ import "./SidBar.scss";
 
 const Sidbar = () => {
   return (
-    <Nav className="flex-column vh-100 overflow-hidden  ">
+    <Nav className="flex-column vh-100 overflow-hidden p-0  ">
+      <Nav.Link as={NavLink} className="link-style" to="/admin/reservation">
+        Réservation
+      </Nav.Link>
       <Nav.Link as={NavLink} className="link-style" to="/admin/categories">
         Categories
       </Nav.Link>

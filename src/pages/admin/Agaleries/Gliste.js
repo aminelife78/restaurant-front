@@ -78,10 +78,13 @@
 // methode 2
 
 import React, { useContext } from "react";
-import { Button, Table } from "react-bootstrap";
+import {  Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { galerieservice } from "../../../_services/galerie.services";
 import { categoryContext } from "../../../store/categoryContext";
+import Buttons from "../../../components/admin/admGlobal/Buttons";
+import { BsTrashFill } from "react-icons/bs";
+import { BsPencilSquare } from "react-icons/bs";
 
 const Gliste = () => {
   const navigate = useNavigate();
@@ -93,10 +96,16 @@ const Gliste = () => {
       .deleteGalerie(index)
       .then((response) => {
         galerieContext.getGaleries();
+       
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+   // modifier une image
+   const updateImage = (index) => {
+    navigate(`/admin/galerie/update/${index}`);
   };
 
   return (
@@ -106,6 +115,8 @@ const Gliste = () => {
           <th>id</th>
           <th>Titre</th>
           <th>image</th>
+          <th>Modifier</th>
+          <th>Suprimer</th>
         </tr>
       </thead>
       <tbody>
@@ -125,19 +136,14 @@ const Gliste = () => {
                 </td>
 
                 <td>
-                  <Button
-                    variant="succes"
-                    onClick={() =>
-                      navigate(`/admin/galerie/update/${photo.id}`)
-                    }
-                  >
-                    Modifier
-                  </Button>
+                  <Buttons color="primary" handleBtn={updateImage} idx={photo.id}>
+                    <BsPencilSquare />
+                  </Buttons>
                 </td>
                 <td>
-                  <Button type="submit" onClick={() => deleteImage(photo.id)}>
-                    Suprimer
-                  </Button>
+                  <Buttons handleBtn={deleteImage} idx={photo.id} color="danger">
+                    <BsTrashFill />
+                  </Buttons>
                 </td>
               </tr>
             );

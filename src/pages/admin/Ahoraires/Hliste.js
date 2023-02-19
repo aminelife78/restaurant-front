@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Button, Table } from "react-bootstrap";
+import {  Table } from "react-bootstrap";
+import { BsPencilSquare } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import Buttons from "../../../components/admin/admGlobal/Buttons";
 import { heureservice } from "../../../_services/heure.services";
 
 
@@ -19,6 +21,11 @@ const Hliste = () => {
   }, []);
 
   
+  // modifier horaires
+ 
+   const updateImage = (index) => {
+    navigate(`/admin/horaires/update/${index}`);
+  };
 
   return (
     
@@ -29,6 +36,7 @@ const Hliste = () => {
           <th>Jour</th>
           <th>Horaires Matin</th>
           <th>Horaires Soir</th>
+          <th>Modifier</th>
         </tr>
       </thead>
       <tbody>
@@ -42,15 +50,10 @@ const Hliste = () => {
                 <td>{horaire.heure_matin}</td>
                 <td>{horaire.heure_soir}</td>
                 <td>
-                  <Button
-                    variant="succes"
-                    onClick={() =>
-                      navigate(`/admin/horaires/update/${horaire.id}`)
-                    }
-                  >
-                    Modifier
-                  </Button>
-                </td>
+                <Buttons color="primary" handleBtn={updateImage} idx={horaire.id}>
+                  <BsPencilSquare />
+                </Buttons>
+              </td>
               
               </tr>
           

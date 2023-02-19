@@ -54,7 +54,7 @@ const Update = () => {
             placeholder="Enter categorie"
             value={data && data.name}
           />
-          <Form.Text className="text-muted text-secondary">{err}</Form.Text>
+          <Form.Text className="text-muted ">{err? err : ""}</Form.Text>
         </Form.Group>
 
         <Button variant="primary" type="submit" className="my-4">

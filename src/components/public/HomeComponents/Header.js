@@ -1,5 +1,5 @@
 import { Col, Row } from "react-bootstrap";
-import header from "../../../images/header.jpg";
+import header from "../../../images/header.WebP";
 import "./homeComponent.scss"
 
 
@@ -10,10 +10,9 @@ const Header = () => {
       <Row>
         <Col>
           <img
-          
-            className="img-fluid d-block w-100 vh-100 opacity-50"
+            className="img-fluid w-100 vh-100  d-block "
             src={header}
-            alt="First slide"
+            alt="header"
           />
         </Col>
       

@@ -1,9 +1,10 @@
 
 // Title
-.header_carte{
-  height: 400px;
+.title-img{
   width: 100%;
+  height: 400px;
 }
+
 
 
 .titre_position{
@@ -23,4 +24,18 @@
   width: 100%;
   background: #000;
   opacity: 0.5;
+}
+
+
+// separator
+
+.separator{
+  width: 70px;
+  height: 5px;
+  background: var(--secondary);
+  margin-left: 150px;
+  margin-top: 10px;
+  
+
+ 
 }

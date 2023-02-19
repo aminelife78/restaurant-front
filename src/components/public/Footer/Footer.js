@@ -1,8 +1,9 @@
 import { useState,useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
-import footer from '../../../images/footer.jpg'
+import footer from '../../../images/footer.WebP'
 import "./Footer.scss"
 import { heureservice } from '../../../_services/heure.services';
+import Separator from '../Global/Separator';
 
 
 function Footer() {
@@ -26,8 +27,9 @@ function Footer() {
       
         
       <Card.ImgOverlay className='d-flex flex-column '>
-        <Card.Title className='fw-bolder fs-3 text-white m-0 w-50 '>Nos horaires d ouverture</Card.Title>
-        <table className="table table-borderless  text-white w-25">
+        <Card.Title className='fw-bolder fs-3 w-25 text-center text-capitalize text-white d-flex flex-column'><span className='text-secondary'>Nos</span>horaires d&apos;ouverture</Card.Title>
+        <Separator />
+        <table className="table table-borderless text-white w-25">
             {
               heures && heures.map(heure=>{
                 return (

@@ -14,6 +14,9 @@ const ContexteCtegory = ({ children }) => {
   const [allFormules, setAllFormules] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  
+
+
   // recuperer liste de categories
   const getCategories = ()=>{
     categorieService
@@ -108,6 +111,7 @@ const getGaleries = ()=>{
   return (
     <categoryContext.Provider
       value={{
+       
         getCategories,
         allCategories,
         loading,

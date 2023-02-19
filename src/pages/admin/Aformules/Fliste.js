@@ -3,6 +3,8 @@ import { Button, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { formuleservice } from "../../../_services/formule.services";
 import { categoryContext } from "../../../store/categoryContext";
+import Buttons from "../../../components/admin/admGlobal/Buttons";
+import { BsPencilSquare, BsTrashFill } from "react-icons/bs";
 
 const Fliste = () => {
   const navigate = useNavigate();
@@ -22,6 +24,12 @@ const Fliste = () => {
       });
   };
 
+
+   // modifier formule
+   const updateFormule = (index) => {
+    navigate(`/admin/formule/update/${index}`);
+  };
+
   return (
     <Table>
       <thead>
@@ -31,6 +39,8 @@ const Fliste = () => {
           <th>Descreption</th>
           <th>Prix</th>
           <th>Nom_menu</th>
+          <th>Modifier</th>
+          <th>Suprimer</th>
         </tr>
       </thead>
       <tbody>
@@ -48,23 +58,15 @@ const Fliste = () => {
                 <td>{formule.prix}</td>
                 <td>{formule.name}</td>
                 <td>
-                  <Button
-                    variant="succes"
-                    onClick={() =>
-                      navigate(`/admin/formule/update/${formule.id}`)
-                    }
-                  >
-                    Modifier
-                  </Button>
-                </td>
-                <td>
-                  <Button
-                    type="submit"
-                    onClick={() => deleteFormule(formule.id)}
-                  >
-                    Suprimer
-                  </Button>
-                </td>
+                <Buttons color="primary" handleBtn={updateFormule} idx={formule.id}>
+                  <BsPencilSquare />
+                </Buttons>
+              </td>
+              <td>
+                <Buttons handleBtn={deleteFormule} idx={formule.id} color="danger">
+                  <BsTrashFill />
+                </Buttons>
+              </td>
               </tr>
             );
           })

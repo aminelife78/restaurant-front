@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import logaout from "../../../images/logaout.png";
 import { accountService } from "../../../_services/account_services";
 
 function Aheader() {
@@ -19,22 +18,11 @@ function Aheader() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Nav.Link
-            onClick={logout}
-            as={NavLink}
-            className="btn btn-secondary me-2 "
-            to="/"
-          >
-            <img src={logaout} alt="logaout" /> Log out
+          <Nav.Link className="text-white" onClick={logout} as={NavLink} to="/">
+            Deconnexion
           </Nav.Link>
 
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
-            navbarScroll
-          ></Nav>
-
-          <Form className="d-flex">
+          <Form className="d-flex ms-auto">
             <Form.Control
               type="search"
               placeholder="Search"

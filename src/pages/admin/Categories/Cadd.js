@@ -26,7 +26,10 @@ const Add = () => {
         setErr("");
         navigate("/admin/categories/liste");
       })
-      .catch((error) => setErr(error.response.data.errors[0].msg));
+      .catch((error) => {
+        setErr(error.response.data.errors[0].msg)
+
+      });
   };
 
   return (
@@ -39,7 +42,7 @@ const Add = () => {
             onChange={addcategorie}
             value={categorie.name}
           />
-          <Form.Text className="text-muted text-secondary">{err}</Form.Text>
+          <Form.Text className="text-muted ">{err? err : ""}</Form.Text>
         </Form.Group>
 
         <Button variant="primary" type="submit" className="my-4">

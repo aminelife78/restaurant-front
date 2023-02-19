@@ -1,8 +1,12 @@
 import React, { useContext } from "react";
-import { Button, Table } from "react-bootstrap";
+import {Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { categorieService } from "../../../_services/categories.service";
 import { categoryContext } from "../../../store/categoryContext";
+import Buttons from "../../../components/admin/admGlobal/Buttons";
+import { BsTrashFill } from "react-icons/bs";
+import { BsPencilSquare } from "react-icons/bs";
+
 
 const Liste = () => {
   const navigate = useNavigate();
@@ -15,6 +19,7 @@ const Liste = () => {
       .deleteCategory(index)
       .then((res) => {
         categoriesContext.getCategories()
+        categoriesContext.getPlats()
        
       })
       .catch((err) => {
@@ -23,6 +28,11 @@ const Liste = () => {
       });
   };
 
+  // modifier une categorie
+  const updateCategory = (index)=>{
+    navigate(`/admin/categories/update/${index}`)
+  }
+
 
   return (
     <Table>
@@ -30,6 +40,8 @@ const Liste = () => {
         <tr>
           <th>id</th>
           <th>Categorie</th>
+          <th>Modifier</th>
+          <th>Suprimer</th>
         </tr>
       </thead>
       <tbody>
@@ -38,26 +50,22 @@ const Liste = () => {
         ) : (
           categoriesContext.allCategories.map((category) => {
             return (
-              <tr key={category.id}>
+              <tr key={category.id} >
                 <td>{category.id}</td>
                 <td>{category.name}</td>
                 <td>
-                  <Button
-                    variant="succes"
-                    onClick={() =>
-                      navigate(`/admin/categories/update/${category.id}`)
-                    }
+                  <Buttons
+                    color="primary"
+                    handleBtn={updateCategory}
+                    idx={category.id}
                   >
-                    Modifier
-                  </Button>
+                    <BsPencilSquare />
+                  </Buttons>
                 </td>
-                <td>
-                  <Button
-                    type="submit"
-                    onClick={() => deleteCategory(category.id)}
-                  >
-                    suprimer
-                  </Button>
+                <td >
+                  <Buttons handleBtn={deleteCategory} idx={category.id} color="danger">
+                  <BsTrashFill />
+                  </Buttons>
                 </td>
               </tr>
             );

@@ -1,20 +1,19 @@
-import { Navbar, Container, Nav } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { NavLink,Link } from "react-router-dom";
 import logo from "../../../images/logo.svg";
 import { useState } from "react";
-import logaout from "../../../images/logaout.png";
 import { accountService } from "../../../_services/account_services";
 
 const NavBar = () => {
-  const [first, setfirst] = useState(accountService.isLogged())
+  const [first, setfirst] = useState(accountService.isLogged());
   const logout = () => {
     accountService.logout();
-    setfirst(accountService.isLogged()) 
+    setfirst(accountService.isLogged());
   };
 
   return (
     <Navbar
-      className="shadow-sm   sticky-top p-0 "
+      className="shadow-sm   sticky-top  "
       expand="lg"
       bg="dark"
       variant="dark"
@@ -48,21 +47,18 @@ const NavBar = () => {
             <Nav.Link as={NavLink} to="/contact">
               Contact
             </Nav.Link>
-            {!first? (
+            {!first ? (
               <Nav.Link as={NavLink} to="/auth/login">
                 {" "}
                 Connexion
               </Nav.Link>
             ) : (
-              <Nav.Link
-                onClick={logout}
-                as={NavLink}
-                className="btn btn-secondary me-2 "
-                to="/"
-              >
-                <img className="w-25 h-auto" src={logaout} alt="logout" /> Log
-                out
-              </Nav.Link>
+              <NavDropdown title="Deconnexion" id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={logout} as={Link} to="/">
+                  Deconnexion
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link}>Ptrofil</NavDropdown.Item>
+              </NavDropdown>
             )}
 
             <Nav>

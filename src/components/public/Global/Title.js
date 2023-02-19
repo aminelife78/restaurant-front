@@ -5,9 +5,9 @@ function Title({title}) {
   return (
     < >
       <Row className='pb-5'>
-        <Col >
+        <Col className='title-card'>
             <img 
-            className="position-absolute img-fluid header_carte"
+            className="position-absolute img-fluid title-img"
             src={imgTitle1}
             alt="myimg"
             />

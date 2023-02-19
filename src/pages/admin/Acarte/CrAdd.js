@@ -37,9 +37,8 @@ const CrAdd = () => {
         navigate("/admin/carte/liste");
         setErr("");
       })
-      .catch((error) => setErr(error.response.data.errors[0].msg));
+      .catch((error) => setErr(error.response.data.errors[0].message));
   };
-
 
 
   return (
@@ -53,6 +52,7 @@ const CrAdd = () => {
             onChange={(e) => setTitre(e.target.value)}
             value={titre}
           />
+          <Form.Text className="text-muted ">{err? err : ""}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicDescreption">
           <Form.Control
@@ -62,6 +62,7 @@ const CrAdd = () => {
             onChange={(e) => setDescreption(e.target.value)}
             value={descreption}
           />
+          <Form.Text className="text-muted ">{err? err : ""}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPrix">
           <Form.Control
@@ -71,6 +72,7 @@ const CrAdd = () => {
             onChange={(e) => setPrix(e.target.value)}
             value={prix}
           />
+          <Form.Text className="text-muted ">{err? err : ""}</Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -79,6 +81,7 @@ const CrAdd = () => {
             name="image"
             onChange={(e) => setImage(e.target.files[0])}
           />
+          <Form.Text className="text-muted ">{err? err : ""}</Form.Text>
         </Form.Group>
 
         <Form.Select
