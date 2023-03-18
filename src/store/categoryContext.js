@@ -4,14 +4,18 @@ import { galerieservice } from "../_services/galerie.services";
 import { platservice } from "../_services/plats.services";
 import { menuservice } from "../_services/menu.services";
 import { formuleservice } from "../_services/formule.services";
+import { Tableservice } from "../_services/tables.services";
 const categoryContext = createContext();
 
 const ContexteCtegory = ({ children }) => {
+
+  // les states
   const [allCategories, setAllCategories] = useState([]);
   const [allPlats, setAllPlats] = useState([]);
   const [photos, setPhotos] = useState([]);
   const [allMenus, setAllMenus] = useState([]);
   const [allFormules, setAllFormules] = useState([]);
+  const [allTables, setAllTables] = useState([]);
   const [loading, setLoading] = useState(true);
 
   
@@ -35,6 +39,7 @@ const ContexteCtegory = ({ children }) => {
     getCategories()
   }, []);
 
+
   // recuperer liste de plats
   const getPlats = ()=>{
     platservice
@@ -53,7 +58,7 @@ const ContexteCtegory = ({ children }) => {
     getPlats()
   }, []);
 
-  // recuperer image de galerie
+  // recuperer images de galerie
 const getGaleries = ()=>{
   galerieservice
   .getAllGaleries()
@@ -70,6 +75,7 @@ const getGaleries = ()=>{
   useEffect(function () {
     getGaleries()
   }, []);
+
 
   // recuperer name de menus
   
@@ -90,6 +96,7 @@ const getGaleries = ()=>{
     getMenu()
   }, []);
 
+
   // recupetrer formules
   const getFormules = ()=>{
     formuleservice
@@ -107,6 +114,25 @@ const getGaleries = ()=>{
   useEffect(function () {
     getFormules()
   }, []);
+
+  // recupérer max couverts (tables)
+  const getTables = ()=>{
+    Tableservice
+      .getAllTables()
+      .then((response) => {
+        const resultTab = response.data.data;
+        setAllTables(resultTab);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log("il y a une erreur " + err);
+        setLoading(true);
+      });
+  }
+  useEffect(function () {
+    getTables()
+  }, []);
+
 
   return (
     <categoryContext.Provider
@@ -128,6 +154,9 @@ const getGaleries = ()=>{
         getFormules,
         allFormules,
         setAllFormules,
+        getTables,
+        allTables,
+        setAllTables
       }}
     >
       {children}

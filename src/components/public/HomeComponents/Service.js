@@ -7,40 +7,40 @@ import affaire from "../../../images/affaire.png"
 
 const Service = () => {
   return (
-   <div className="bg-light py-5">
-    <Container  className="text-center ">
+   
+    <Container  className="text-center py-5 ">
       <Row className="mb-5">
-        <h2 className="fw-bold fs-2 text-succes">Service de restauration</h2>
+        <h5 className="fw-bold fs-1 text-succes">Service de restauration</h5>
         <div className="separator m-auto mt-4"></div>
       </Row>
       <Row>
-        <Col>
+        <Col md={4}>
           <img width="40" height="40" src={anniverssaire} alt="anniverssaire" />
-          <h4 className="my-4 fw-bold text-secondary">Fête danniversaire</h4>
+          <h6 className="my-4 fw-bold fs-5 text-secondary">Fête danniversaire</h6>
           <p className="text-muted">
-            Même le tout-puissant Pointing n'a aucun contrôle sur les textes
-            aveugles, c'est un texte presque non orthographique.
+            Même le tout-puissant Pointing n&apos;a aucun contrôle sur les textes
+            aveugles, c&apos;est un texte presque non orthographique.
           </p>
         </Col>
-        <Col>
+        <Col md={4}>
         <img width="40" height="40" src={affaire} alt="affaire" />
-          <h4 className="my-4 fw-bold text-secondary">Entretiens daffaires</h4>
+          <h6 className="my-4 fw-bold fs-5 text-secondary">Entretiens daffaires</h6>
           <p className="text-muted">
-            Même le tout-puissant Pointing n'a aucun contrôle sur les textes
-            aveugles, c'est un texte presque non orthographique.
+            Même le tout-puissant Pointing n&apos;a aucun contrôle sur les textes
+            aveugles, c&apos;est un texte presque non orthographique.
           </p>
         </Col>
-        <Col>
+        <Col md={4}>
         <img width="40" height="40" src={mariage} alt="mariage" />
-          <h4 className="my-4 fw-bold text-secondary">Mariage</h4>
+          <h6 className="my-4 fw-bold fs-5 text-secondary">Mariage</h6>
           <p className="text-muted">
-            Même le tout-puissant Pointing n'a aucun contrôle sur les textes
-            aveugles, c'est un texte presque non orthographique.
+            Même le tout-puissant Pointing n&apos;a aucun contrôle sur les textes
+            aveugles, c&apos;est un texte presque non orthographique.
           </p>
         </Col>
       </Row>
     </Container>
-    </div>
+
 
   );
 };

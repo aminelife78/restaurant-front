@@ -63,7 +63,7 @@ const Fliste = () => {
                 </Buttons>
               </td>
               <td>
-                <Buttons handleBtn={deleteFormule} idx={formule.id} color="danger">
+                <Buttons handleBtn={deleteFormule} idx={formule.id} color="dark">
                   <BsTrashFill />
                 </Buttons>
               </td>

@@ -1,4 +1,3 @@
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import { NavLink } from "react-router-dom";
 import Form from "react-bootstrap/Form";
@@ -11,26 +10,27 @@ function Aheader() {
     accountService.logout();
   };
   return (
-    <Navbar bg="dark" expand="lg" variant="dark">
-      <Container fluid>
-        <Navbar.Brand as={NavLink} to="/admin">
-          Navbar scroll
+    <Navbar  bg="secondary" expand="lg" variant="dark">
+      <Container   >
+        <Navbar.Brand className="fw-bold fs-3 " as={NavLink} to="/admin/reservation">
+          Home
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav.Link className="text-white" onClick={logout} as={NavLink} to="/">
-            Deconnexion
-          </Nav.Link>
+        <Navbar.Collapse  id="navbarScroll">
+         
 
-          <Form className="d-flex ms-auto">
+          <Form className="d-flex ms-auto my-3">
             <Form.Control
               type="search"
               placeholder="Search"
-              className="me-2"
+              className="me-5 pe-5"
               aria-label="Search"
+              
             />
-            <Button variant="outline-primary">Search</Button>
           </Form>
+          <Nav.Link  className=" text-center border border-2-white px-3  py-2 rounded-2 text-white fw-bold" onClick={logout} as={NavLink} to="/">
+          Deconnexion
+        </Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

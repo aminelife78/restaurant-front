@@ -55,7 +55,7 @@ const Mliste = () => {
                   </Buttons>
                 </td>
                 <td>
-                  <Buttons handleBtn={deleteMenu} idx={menu.id} color="danger">
+                  <Buttons handleBtn={deleteMenu} idx={menu.id} color="dark">
                     <BsTrashFill />
                   </Buttons>
                 </td>

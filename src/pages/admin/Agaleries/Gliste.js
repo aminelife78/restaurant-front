@@ -141,7 +141,7 @@ const Gliste = () => {
                   </Buttons>
                 </td>
                 <td>
-                  <Buttons handleBtn={deleteImage} idx={photo.id} color="danger">
+                  <Buttons handleBtn={deleteImage} idx={photo.id} color="dark">
                     <BsTrashFill />
                   </Buttons>
                 </td>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Table } from "react-bootstrap";
+import { Container, Table } from "react-bootstrap";
 import BtnDelete from "../../../components/admin/admGlobal/Buttons";
 import { reservationservice } from "../../../_services/reservation.services";
 import { BsTrashFill } from "react-icons/bs";
+import  moment from "moment";
+
 
 const Areservation = () => {
   const [allReservations, setAllReservations] = useState([]);
@@ -13,7 +15,7 @@ const Areservation = () => {
       .then((response) => {
         const resultTab = response.data.data;
         setAllReservations(resultTab);
-      })
+       })
       .catch((err) => {
         console.log("il y a une erreur " + err);
       });
@@ -23,6 +25,7 @@ const Areservation = () => {
     getReservations();
   }, []);
 
+ 
   // suprimer une reservation
 
   const deleteReservation = (index) => {
@@ -30,14 +33,17 @@ const Areservation = () => {
       .deleteReservation(index)
       .then((res) => {
         getReservations();
+        
       })
       .catch((err) => {
         console.log("il y a une erreur " + err);
       });
   };
 
+ 
   return (
-    <Table striped bordered hover className="p-0">
+    <Container className="overflow-auto p-3 ">
+    <Table  striped bordered hover >
       <thead>
         <tr>
           <th>id</th>
@@ -61,18 +67,18 @@ const Areservation = () => {
             return (
               <tr key={reservation.id}>
                 <td>{reservation.id}</td>
-                <td>{reservation.date}</td>
+                <td>{ moment(reservation.date).format('DD-MM-YYYY')}</td>
                 <td>{reservation.heure}</td>
                 <td>{reservation.nombre_couverts}</td>
                 <td>{reservation.allergies}</td>
-                <td>{reservation.username}</td>
+                <td>{reservation.nom}</td>
                 <td>{reservation.email}</td>
                 <td>{reservation.phone}</td>
                 <td className="d-flex justify-content-center">
                   <BtnDelete
                     handleBtn={deleteReservation}
                     idx={reservation.id}
-                    color="danger"
+                    color="dark"
                   >
                     <BsTrashFill />
                   </BtnDelete>
@@ -83,6 +89,7 @@ const Areservation = () => {
         )}
       </tbody>
     </Table>
+    </Container>
   );
 };
 

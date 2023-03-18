@@ -9,7 +9,7 @@ const Alayout = () => {
     <>
       <Aheader />
       <Row >
-        <Col xl="2" className="bg-primary" ><Sidbar /></Col>
+        <Col xl="2" className="bg-secondary  fs-6  d-flex justify-content-center  " ><Sidbar /></Col>
         <Col xl="10" > <Outlet />  </Col>
       </Row>
     </>

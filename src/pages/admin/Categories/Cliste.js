@@ -63,8 +63,8 @@ const Liste = () => {
                   </Buttons>
                 </td>
                 <td >
-                  <Buttons handleBtn={deleteCategory} idx={category.id} color="danger">
-                  <BsTrashFill />
+                  <Buttons handleBtn={deleteCategory} idx={category.id}  color="dark">
+                    <BsTrashFill />
                   </Buttons>
                 </td>
               </tr>

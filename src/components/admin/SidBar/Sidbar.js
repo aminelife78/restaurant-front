@@ -2,30 +2,47 @@ import React from "react";
 import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./SidBar.scss";
-
+import {
+  BiRestaurant,
+  BiCategory,
+  BiMenu,
+  BiMenuAltRight,
+  BiPhotoAlbum,
+  BiFoodMenu,
+  BiCalendar,
+  BiHourglass,
+} from "react-icons/bi";
 const Sidbar = () => {
   return (
-    <Nav className="flex-column vh-100 overflow-hidden p-0  ">
-      <Nav.Link as={NavLink} className="link-style" to="/admin/reservation">
+    <Nav className="flex-column  sidbar-style  overflow-hidden p-0 ">
+      <Nav.Link as={NavLink} className="link-style " to="/admin/tables">
+        <BiRestaurant className="me-2 fs-5" />
+        Table/Couverts
+      </Nav.Link>
+      <Nav.Link as={NavLink} className="link-style " to="/admin/reservation">
+        <BiCalendar className="me-2 fs-5" />
         Réservation
       </Nav.Link>
       <Nav.Link as={NavLink} className="link-style" to="/admin/categories">
-        Categories
+        <BiCategory className="me-2 fs-5" /> Categories
       </Nav.Link>
       <Nav.Link as={NavLink} className="link-style" to="/admin/carte">
+        <BiFoodMenu className="me-2 fs-5" />
         Carte
       </Nav.Link>
       <Nav.Link as={NavLink} className="link-style" to="/admin/galerie">
+        <BiPhotoAlbum className="me-2 fs-5" />
         Galerie
       </Nav.Link>
       <Nav.Link as={NavLink} className="link-style" to="/admin/horaires">
+        <BiHourglass className="me-2 fs-5" />
         Horaires
       </Nav.Link>
       <Nav.Link as={NavLink} className="link-style" to="/admin/menu">
-        Menu
+        <BiMenu className="me-2 fs-5" /> Menu
       </Nav.Link>
       <Nav.Link as={NavLink} className="link-style" to="/admin/formule">
-        Formules
+        <BiMenuAltRight className="me-2 fs-5" /> Formules
       </Nav.Link>
     </Nav>
   );

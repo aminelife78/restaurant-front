@@ -3,6 +3,7 @@ import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { platservice } from "../../../_services/plats.services";
 import { categoryContext } from "../../../store/categoryContext";
+import ErrorFormValidation from "../../../utils/ErrorFormValidation";
 
 const CrAdd = () => {
   const navigate = useNavigate();
@@ -34,15 +35,23 @@ const CrAdd = () => {
       .addPlat(formData)
       .then((response) => {
         categoriesContext.getPlats()
-        navigate("/admin/carte/liste");
         setErr("");
+        navigate("/admin/carte/liste");
+        
       })
-      .catch((error) => setErr(error.response.data.errors[0].message));
+      .catch((error) => {
+        
+          setErr(error.response.data.errors[0].msg)
+        
+        
+      });
   };
 
 
   return (
     <Container className="w-50 h-50 mt-5">
+    {err ? <ErrorFormValidation errs={err} /> : ""}
+
       <Form onSubmit={onsubmit}>
         <Form.Group className="mb-3" controlId="formBasicTitre">
           <Form.Control
@@ -51,8 +60,8 @@ const CrAdd = () => {
             name="titre"
             onChange={(e) => setTitre(e.target.value)}
             value={titre}
+            required
           />
-          <Form.Text className="text-muted ">{err? err : ""}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicDescreption">
           <Form.Control
@@ -61,8 +70,8 @@ const CrAdd = () => {
             name="descreption"
             onChange={(e) => setDescreption(e.target.value)}
             value={descreption}
+            required
           />
-          <Form.Text className="text-muted ">{err? err : ""}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPrix">
           <Form.Control
@@ -71,8 +80,8 @@ const CrAdd = () => {
             name="prix"
             onChange={(e) => setPrix(e.target.value)}
             value={prix}
+            required
           />
-          <Form.Text className="text-muted ">{err? err : ""}</Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -80,14 +89,15 @@ const CrAdd = () => {
             type="file"
             name="image"
             onChange={(e) => setImage(e.target.files[0])}
+            required
           />
-          <Form.Text className="text-muted ">{err? err : ""}</Form.Text>
         </Form.Group>
 
         <Form.Select
           value={categories_id}
           onChange={(e) => setCategories_id(e.target.value)}
           aria-label="Default select example"
+          required
         >
           <option>Choisi une categorie</option>
           {categoriesContext.allCategories &&

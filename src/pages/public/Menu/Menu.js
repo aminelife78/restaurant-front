@@ -7,7 +7,7 @@ const Menu = () => {
   return (
     <Fragment>
       <Title title="Nos Menus" />
-      <Container >
+      <Container>
         <Formule />
       </Container>
     </Fragment>

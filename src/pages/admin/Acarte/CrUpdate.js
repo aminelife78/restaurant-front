@@ -2,6 +2,7 @@ import React, { useState, useContext,useEffect } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { categoryContext } from "../../../store/categoryContext";
+import ErrorFormValidation from "../../../utils/ErrorFormValidation";
 import { platservice } from "../../../_services/plats.services";
 
 const CrAdd = () => {
@@ -19,7 +20,7 @@ const CrAdd = () => {
   const [categories_id, setCategories_id] = useState("");
   const [image, setImage] = useState("");
 
-  const [err, setErr] = useState("");
+  const [errs, setErrs] = useState("");
 
     // recuperer un plat par id
     useEffect(
@@ -56,13 +57,15 @@ const CrAdd = () => {
         platsContext.getPlats()
         navigate("/admin/carte/liste");
 
-        setErr("");
+        setErrs("");
       })
-      .catch((error) => setErr(error.response.data.errors[0].msg));
+      .catch((error) => setErrs(error.response.data.errors[0].msg));
   };
 
   return (
     <Container className="w-50 h-50 mt-5">
+    {errs ? <ErrorFormValidation errs={errs} /> : ""}
+
       <Form onSubmit={onsubmit}>
         <Form.Group className="mb-3" controlId="formBasicTitre">
           <Form.Control
@@ -71,6 +74,7 @@ const CrAdd = () => {
             name="titre"
             onChange={(e) => setTitre(e.target.value)}
             value={titre}
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicDescreption">
@@ -80,6 +84,7 @@ const CrAdd = () => {
             name="descreption"
             onChange={(e) => setDescreption(e.target.value)}
             value={descreption}
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPrix">
@@ -89,6 +94,7 @@ const CrAdd = () => {
             name="prix"
             onChange={(e) => setPrix(e.target.value)}
             value={prix}
+            required
           />
         </Form.Group>
 
@@ -97,6 +103,7 @@ const CrAdd = () => {
             type="file"
             name="image"
             onChange={(e) => setImage(e.target.files[0])}
+            required
           />
         </Form.Group>
 
@@ -104,6 +111,7 @@ const CrAdd = () => {
           value={categories_id}
           onChange={(e) => setCategories_id(e.target.value)}
           aria-label="Default select example"
+          required
         >
           <option>Choisi une categorie</option>
           {platsContext.allCategories &&

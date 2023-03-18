@@ -13,20 +13,32 @@ const Carte = () => {
   const [plats, setPlats] = useState()
   const [datas, setDatas] = useState(plats)
   const [repa, setRepa] = useState("")
+  const [loading, setLoading] = useState(true)
+  const [err, seterr] = useState("")
 
   useEffect(function (){
     platservice.getAllPlats().then((response) => {
+      if(response.status !== 200){
+        throw new Error("Désolé! pas de plats diponible")
+      }
+      
       const resultTab = response.data.data
       setPlats(resultTab)
       setDatas(resultTab)
+      setLoading(false)
     }).catch(err=>{
-      console.log("il y a une erreur " + err)
+      seterr(err.message)
+      
+      setLoading(false)
+
     })
 
   },[]);
 
   const showRepas = (repa)=>{
-
+      if(!plats){
+        throw new Error("pas de plats")
+      }
        const mesReapas = plats && plats.filter(plat=>{
         return plat.name === repa
       })
@@ -41,7 +53,7 @@ const Carte = () => {
       <Container >
 
             <Category  showRepas={showRepas} />
-            <CardListe datas={datas}/>
+            <CardListe datas={datas} loading={loading} err={err}/>
 
       </Container>
     </Fragment>
