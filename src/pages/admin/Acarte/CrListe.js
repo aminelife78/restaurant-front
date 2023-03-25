@@ -50,9 +50,9 @@ const Carte = () => {
             <td>pas de données</td>
           </tr>
         ) : (
-          platsContext.allPlats.map((plat) => {
+          platsContext.allPlats.map((plat,index) => {
             return (
-              <tr key={plat.id}>
+              <tr key={index}>
                 <td>{plat.id}</td>
                 <td>{plat.name}</td>
                 <td>{plat.titre}</td>

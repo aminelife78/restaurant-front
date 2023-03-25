@@ -46,7 +46,7 @@ const Tadd = () => {
     <Container className="w-50 h-50 mt-5">
       {errs ? <ErrorFormValidation errs={errs} /> : ""}
       <Form onSubmit={onsubmit}>
-        <Form.Group classcategorie="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control
             type="text"
             placeholder="Enter l'heure"
@@ -55,7 +55,7 @@ const Tadd = () => {
             value={datas.time}
           />
         </Form.Group>
-        <Form.Group classcategorie="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control
             type="text"
             placeholder="Enter le nombre de couverts disponibles"

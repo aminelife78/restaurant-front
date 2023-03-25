@@ -31,7 +31,7 @@ const Category = ({ showRepas }) => {
 
   return (
     <Row className="mt-3 mb-5 animate__animated animate__rotateIn ">
-      <Col sm="12" className="d-flex justify-content-center  ">
+      <Col  className="d-flex flex-column flex-sm-row justify-content-center  ">
         {loading === false ? (
           allCategories ? (
             allCategories.map((repa, id) => {
@@ -40,7 +40,7 @@ const Category = ({ showRepas }) => {
                   <Button
                     onClick={() => showRepas(repa.name)}
                     className="mx-2 "
-                    variant="outline-succes "
+                    variant="outline-succes mb-1 "
                     size="md"
                   >
                     {repa.name.charAt(0).toUpperCase() + repa.name.slice(1)}

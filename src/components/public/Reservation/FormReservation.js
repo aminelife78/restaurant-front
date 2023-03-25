@@ -94,11 +94,7 @@ const FormReservation = () => {
   // envoyé les donnée dans la base de données
   const onSubmit = (e) => {
     e.preventDefault();
-    // recuperer le id de client stocket dans le token
-    /* let { userId } = accountService.getTokenInfo()*/
-    // modifier le clients_id dans la réservation
-    // datas.clients_id = userId;
-    reservationservice
+      reservationservice
       .addReservation(datas)
       .then((res) => {
         
