@@ -100,7 +100,7 @@ function Footer() {
       </Row>
       <Row>
         <Col className="px-0">
-          <h5 className="text-center fs-6 footer-position ">
+          <h5 className="text-center  footer-position ">
             Copyright ©2023 Tous droits réservés | Ce modèle est fait par Mohamed
           </h5>
         </Col>

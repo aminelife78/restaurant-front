@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import "./Reservation.scss"
 import { useNavigate } from "react-router-dom";
 import { Alert, Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { accountService } from "../../../_services/account_services";
@@ -110,9 +111,9 @@ const FormReservation = () => {
 
   return (
     <>
-      <p className="text-center fw-bold text-muted pb-2">
-        veuillez saisir la date et l&apos;heure pour voir les disponibilité
-      </p>
+      { reservationDispo >= datas.nombre_couverts? "" :  <p className="saisi text-center text-succes fw-bold pb-2">
+      veuillez saisir la date et l&apos;heure pour voir les disponibilité
+    </p>}
       <Form onSubmit={onSubmit} className="w-75 mx-auto">
         {mydate && myheure && reservationDispo >= 0  &&  
           <Alert variant="secondary" className="text-center">

@@ -18,18 +18,19 @@ useEffect(()=>{
 
   return (
     <Navbar
-      className="shadow-sm text-center  sticky-top  "
+      className="shadow-sm text-center  sticky-top "
       expand="lg"
       bg="dark"
       variant="dark"
     >
       <Container>
+        
         <Navbar.Brand
-          className="text-succes fw-bolder fs-3"
+          className="text-succes fw-bolder "
           as={NavLink}
           to="/"
         >
-          <img className="w-75 h-75" src={logo} alt="logo" />
+          <img className="w-75 h-25" src={logo} alt="logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav  ">

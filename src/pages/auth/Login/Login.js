@@ -36,11 +36,11 @@ const Login = () => {
 
   return (
     <div className="bg-primary ">
-      <Container className="w-75">
+      <Container>
         <Row className=" d-flex justify-content-center py-5 ">
           {err ? <ErrorFormValidation errs={err} /> : ""}
 
-          <Col md={8} lg={6} xs={12}>
+          <Col  md={8} lg={6} xs={12}>
             <Card className="px-4">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
@@ -97,11 +97,11 @@ const Login = () => {
                       </p>
                     </div>
                     <div className="mt-3">
-                      <p className="mb-0  text-center">
+                      <p className="mb-0  text-center fs-6">
                         Vous n&apos;avez pas de compte?{" "}
                         <Link
                           to="/auth/register"
-                          className="text-primary fw-bold"
+                          className="text-primary fw-bold fs-6"
                         >
                           Inscrivez-vous ici
                         </Link>

@@ -4,6 +4,7 @@
   background: url("../../../images/header.WebP") no-repeat center center;
   background-size: cover;
   height: 100vh;
+  overflow: hidden;
   h1 {
     margin: 0;
     text-align: center;
@@ -11,17 +12,17 @@
     padding-top: 100px;
     margin-bottom: 10px;
     color: #fff;
-    font-size: 48px;
     font-weight: 700;
+    font-size: 42px;
   }
   p {
     text-align: center;
     color: #fff;
-    font-size: 16px;
     opacity: 0.8;
     letter-spacing: 1px;
     line-height: 20px;
     font-weight: 300;
+    font-size: 12px;
   }
 }
 

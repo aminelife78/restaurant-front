@@ -14,7 +14,7 @@ import {
 } from "react-icons/bi";
 const Sidbar = () => {
   return (
-    <Nav className="flex-column  sidbar-style  overflow-hidden p-0 ">
+    <Nav className=" flex-column  sidbar-style  overflow-hidden p-0 ">
       <Nav.Link as={NavLink} className="link-style " to="/admin/tables">
         <BiRestaurant className="me-2 fs-5" />
         Table/Couverts
