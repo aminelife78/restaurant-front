@@ -5,7 +5,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 const Aformule = () => {
   return (
     <>
-    <Nav variant="tabs" >
+    <Nav  >
     <Nav.Item>
       <Nav.Link as={NavLink} to="/admin/formule/liste">Liste menus</Nav.Link>
     </Nav.Item>

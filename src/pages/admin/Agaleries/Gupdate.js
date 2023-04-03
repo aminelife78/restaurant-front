@@ -75,17 +75,17 @@ const Gupdate = () => {
   
   return (
     <>
-      <div className="container mt-3">
+      <div className="container w-50 mt-3">
       {errs ? <ErrorFormValidation errs={errs} /> : ""}
 
         <Form onSubmit={onsubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>title</Form.Label>
+            <Form.Label>titre</Form.Label>
             <Form.Control type="text" name="title" value={title}  onChange={setdata} required/>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Select Your Image</Form.Label>
+            <Form.Label>Image</Form.Label>
             <Form.Control type="file" name="image" onChange={setimgfile} required />
           </Form.Group>
           <Button variant="primary" type="submit">

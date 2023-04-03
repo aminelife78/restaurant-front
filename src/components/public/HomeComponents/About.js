@@ -20,11 +20,23 @@ const About = () => {
               alt=" about"
             />
             <Card.Body>
-              <Card.Text className="  item-description py-2 fs-6 lh-base text-center mx-auto  text-muted w-75">
-                Depuis plusieurs années nous navons cessé de créer de nouvelles
-                recettes et daméliorer en permanence notre savoir-faire. Ahmed
-                Kitchen vous offre des produits exclusifs comme lauthentique
-                Napolitaine cuite au feu de bois.
+              <Card.Text className="  item-description py-2 fs-6 lh-base  mx-auto  text-muted w-75">
+                Bienvenue sur le site de notre restaurant ! Nous sommes ravis de
+                partager notre passion pour la cuisine délicieuse et une
+                excellente expérience culinaire avec vous. Voici un peu sur nous
+                et ce que nous proposons. <br/><br/>
+                Notre restaurant est situé au coeur du
+                centre-ville et sert une variété de plats pour tous les goûts.
+                Nous sommes spécialisés dans la cuisine de la ferme à la table,
+                en utilisant autant que possible des ingrédients frais et
+                locaux. Notre menu change selon les saisons pour refléter les
+                produits les plus frais disponibles. <br/><br/>
+                Nous offrons des options de
+                sièges à l'intérieur et à l'extérieur, avec une atmosphère
+                chaleureuse et intime, parfaite pour un dîner romantique ou une
+                soirée entre amis. Notre équipe de serveurs sympathiques et
+                attentionnés veillera à ce que vous viviez une expérience
+                culinaire confortable et agréable.
               </Card.Text>
             </Card.Body>
           </Card>

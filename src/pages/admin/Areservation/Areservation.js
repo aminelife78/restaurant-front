@@ -39,8 +39,8 @@ const Areservation = () => {
 
   return (
     <Container>
-      <Row className=" m-2 ">
-        <Col className=" overflow-auto  " xs="12">
+      <Row className="  m-2 ">
+        <Col className="overflow-auto"  xs="12">
           <Table striped bordered hover className="m-2" >
             <thead>
               <tr>

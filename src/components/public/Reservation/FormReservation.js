@@ -100,7 +100,7 @@ const FormReservation = () => {
       .then((res) => {
         
         setErrs("");
-        navigate("/");
+        navigate("/confirmation");
       })
       .catch((err) => {
         err.response.data.message

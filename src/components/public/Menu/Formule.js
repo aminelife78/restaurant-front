@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from "react";
-import { Card, Spinner } from "react-bootstrap";
+import { Card, Container, Spinner } from "react-bootstrap";
 // import axios from "axios"
 import MenuLists from "./MenuLists";
 // import baseUrl from "../../../Api/baseUrl";
@@ -24,7 +24,8 @@ const Formule = () => {
 
   
   return (
-    <div  className="animate__animated animate__pulse">
+    <Container>
+    <div  className="animate__animated animate__pulse  ">
     {
       loading===false?(
       datas?( datas.map(data=>{
@@ -43,6 +44,7 @@ const Formule = () => {
     }
     
     </div>
+    </Container>
   );
 };
 

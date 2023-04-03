@@ -49,7 +49,7 @@ const CrAdd = () => {
 
 
   return (
-    <Container className="w-50 h-50 mt-5">
+    <Container className="w-50 mt-5">
     {err ? <ErrorFormValidation errs={err} /> : ""}
 
       <Form onSubmit={onsubmit}>

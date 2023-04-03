@@ -25,7 +25,7 @@ const Login = () => {
       .then((response) => {
         accountService.saveToken(response.data.token);
         if (accountService.getTokenInfo().userRole === "admin") {
-          navigate("/admin/reservation");
+          navigate("/admin/dashboard");
         } else {
           navigate("/reservation");
         }
@@ -40,7 +40,7 @@ const Login = () => {
         <Row className=" d-flex justify-content-center py-5 ">
           {err ? <ErrorFormValidation errs={err} /> : ""}
 
-          <Col  md={8} lg={6} xs={12}>
+          <Col md={8} lg={6} xs={12}>
             <Card className="px-4">
               <Card.Body>
                 <div className="mb-3 mt-md-4">

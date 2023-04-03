@@ -43,7 +43,7 @@ function Fadd() {
   };
 
   return (
-    <Container className="w-50 h-50 mt-5">
+    <Container className="w-50 mt-5">
       {errs ? <ErrorFormValidation errs={errs} /> : ""}
 
       <Row className="vh-100 d-flex justify-content-center ">

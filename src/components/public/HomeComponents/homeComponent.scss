@@ -4,7 +4,11 @@
   background: url("../../../images/header.WebP") no-repeat center center;
   background-size: cover;
   height: 100vh;
-  overflow: hidden;
+  max-height: 100%;
+  max-width: 100%;
+  
+  
+  
   h1 {
     margin: 0;
     text-align: center;
@@ -27,8 +31,9 @@
 }
 
 // about
+
 .about-img {
-  width: 600px;
+  width: 500px;
   object-fit: cover;
 
 

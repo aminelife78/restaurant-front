@@ -7,6 +7,7 @@ import Menu from "./Menu/Menu"
 import Contact from "./Contact/Contact"
 import Reservation from "./Reservation/Reservation"
 import ErrorPage from "../../utils/ErrorPage.js"
+import Confirmation from './Confirmation/Confirmation'
 
 
 
@@ -21,6 +22,7 @@ const RouterPublic = () => {
               <Route path="/menu" element={<Menu />} /> 
               <Route path="/contact" element={<Contact />} /> 
               <Route path="/reservation" element={<Reservation />} /> 
+              <Route path="/confirmation" element={<Confirmation />} /> 
                <Route path='*' element={<ErrorPage />} />  
           </Route>  
       </Routes>

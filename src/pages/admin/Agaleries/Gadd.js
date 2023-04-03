@@ -44,17 +44,17 @@ const Gadd = () => {
   };
 
   return (
-    <Container className=" mt-3">
+    <Container className=" w-50 mt-3">
       {errs ? <ErrorFormValidation errs={errs} /> : ""}
 
       <Form onSubmit={addPhotos}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>title</Form.Label>
+          <Form.Label>Titre</Form.Label>
           <Form.Control type="text" name="title" onChange={setdata} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Select Your Image</Form.Label>
+          <Form.Label>Image</Form.Label>
           <Form.Control
             type="file"
             name="image"

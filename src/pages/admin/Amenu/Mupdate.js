@@ -52,7 +52,7 @@ const Mupdate = () => {
   };
 
   return (
-    <Container className="w-50 h-50 mt-5">
+    <Container className="w-50 mt-5">
     {errs ? <ErrorFormValidation errs={errs} /> : ""}
 
       <Form onSubmit={onsubmit}>

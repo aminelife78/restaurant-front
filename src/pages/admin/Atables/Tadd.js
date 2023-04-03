@@ -43,13 +43,13 @@ const Tadd = () => {
   };
 
   return (
-    <Container className="w-50 h-50 mt-5">
+    <Container className="w-50 mt-5">
       {errs ? <ErrorFormValidation errs={errs} /> : ""}
       <Form onSubmit={onsubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control
             type="text"
-            placeholder="Enter l'heure"
+            placeholder="Enter l'heure (hh:mm)"
             onChange={handleChange}
             name="time"
             value={datas.time}

@@ -4,7 +4,7 @@ import "./Global.scss"
 function Title({title}) {
   return (
     < >
-      <Row className='pb-5 '>
+      <Row className='pb-5 min-vw-100 '>
         <Col className='title-card '>
             <img 
             className="position-absolute img-fluid title-img"

@@ -6,7 +6,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 const Atables = () => {
   return (
     <>
-    <Nav variant="tabs" >
+    <Nav >
         <Nav.Item>
           <Nav.Link as={NavLink} to="/admin/tables/liste">Liste table</Nav.Link>
         </Nav.Item>
