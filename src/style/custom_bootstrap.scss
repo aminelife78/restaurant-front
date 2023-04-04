@@ -3,13 +3,15 @@ $secondary: #05445E;
 $succes: #1F9595;
 $dark:#0A0A0A;
 $light:#FAFAFA;
+$danger:#F08080;
 
 $theme-colors: (
   "primary": $primary,
   "secondary": $secondary,
   "succes" : $succes,
   "dark":$dark,
-  "light":$light
+  "light":$light,
+  "danger":$danger
 );
 
 

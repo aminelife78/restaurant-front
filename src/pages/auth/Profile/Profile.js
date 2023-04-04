@@ -25,18 +25,18 @@ const Profile = () => {
   })
 
   return (
-    <Container>
+    <Container fluid>
       <Row className="py-5">
         <Col
-          xs="4" lg="2"
-          className="sidbar d-flex flex-column  border border-end-1 border-top-0 border-bottom-0 border-start-0  "
+          sm="2" 
+          className="sidbar text-center d-flex flex-column  border border-end-1 border-top-0 border-bottom-0 border-start-0  "
         >
           <h3>MON COMPTE</h3>
           <hr />
-          <p  onClick={()=>setShow(true)}>Details du compte</p>
-          <p onClick={()=>setShow(false)}>mes reservation</p>
+          <p className="text-primary"  onClick={()=>setShow(true)}>Details du compte</p>
+          <p className="text-primary"  onClick={()=>setShow(false)}>mes reservation</p>
         </Col>
-        <Col className="article mx-5">
+        <Col   className="article mx-5">
         {show?<ProfileDetail user={user}/> : <ProfileReservation userReservation={userReservation} />}
           
         </Col> 

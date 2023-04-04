@@ -15,9 +15,14 @@ const Carte = () => {
   const [repa, setRepa] = useState("")
   const [loading, setLoading] = useState(true)
   const [err, seterr] = useState("")
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  
+    
+  }, [])
 
   useEffect(function (){
-    platservice.getAllPlats().then((response) => {
+      platservice.getAllPlats().then((response) => {
       if(response.status !== 200){
         throw new Error("Désolé! pas de plats diponible")
       }
