@@ -3,6 +3,7 @@ import { Button, Container, Form } from "react-bootstrap";
 import { categoryContext } from "../../../store/categoryContext";
 import { useNavigate,useParams } from "react-router-dom";
 import { menuservice } from "../../../_services/menu.services";
+import ErrorFormValidation from "../../../utils/ErrorFormValidation";
 
 const Mupdate = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Mupdate = () => {
   const index = params.id;
   
   const [menu, setMenu] = useState({ name: "" });
-  const [err, setErr] = useState("");
+  const [errs, setErrs] = useState("");
 
   // recuperer un menu par id
   useEffect(
@@ -30,6 +31,9 @@ const Mupdate = () => {
 // modifier un menu 
 
   const updateMenu = (e) => {
+    if (!e.target.value) {
+      setErrs("");
+    }
     setMenu({ name: e.target.value });
   };
 
@@ -41,14 +45,16 @@ const Mupdate = () => {
       .then((response) => {
         menuContext.getMenu()
         setMenu({ name: "" });
-        setErr("");
+        setErrs("");
         navigate("/admin/menu/liste");
       })
-      .catch((error) => setErr(error.response.data.errors[0].msg));
+      .catch((error) => setErrs(error.response.data.errors[0].msg));
   };
 
   return (
-    <Container className="w-50 h-50 mt-5">
+    <Container className="w-50 mt-5">
+    {errs ? <ErrorFormValidation errs={errs} /> : ""}
+
       <Form onSubmit={onsubmit}>
         <Form.Group classcategorie="mb-3" controlId="formBasicEmail">
           <Form.Control
@@ -57,7 +63,6 @@ const Mupdate = () => {
             onChange={updateMenu}
             value={menu.name}
           />
-          <Form.Text className="text-muted text-secondary">{err}</Form.Text>
         </Form.Group>
 
         <Button variant="primary" type="submit" className="my-4">

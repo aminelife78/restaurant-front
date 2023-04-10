@@ -3,8 +3,13 @@ import Axios from "./caller.services";
 
 // get all reservation
 
-let getAllReservation = () => {
-  return Axios.get("/api/v1/reservations");
+let getAllReservation = (date,heure) => {
+  if(date && date){
+    return Axios.get(`/api/v1/reservations?date=${date}&heure=${heure}`);
+  }else{
+    return Axios.get(`/api/v1/reservations`);
+
+  }
 };
 
 // get one category

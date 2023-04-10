@@ -6,7 +6,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 const Acarte = () => {
   return (
     <>
-    <Nav variant="tabs" >
+    <Nav >
         <Nav.Item>
           <Nav.Link as={NavLink} to="/admin/carte/liste">Liste carte</Nav.Link>
         </Nav.Item>

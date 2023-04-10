@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button, Table } from "react-bootstrap";
+import {  Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { menuservice } from "../../../_services/menu.services";
 import { categoryContext } from "../../../store/categoryContext";
@@ -55,7 +55,7 @@ const Mliste = () => {
                   </Buttons>
                 </td>
                 <td>
-                  <Buttons handleBtn={deleteMenu} idx={menu.id} color="danger">
+                  <Buttons handleBtn={deleteMenu} idx={menu.id} color="dark">
                     <BsTrashFill />
                   </Buttons>
                 </td>

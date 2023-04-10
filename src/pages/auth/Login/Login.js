@@ -3,11 +3,17 @@ import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { accountService } from "../../../_services/account_services";
 import { useNavigate } from "react-router-dom";
+import ErrorFormValidation from "../../../utils/ErrorFormValidation";
 
 const Login = () => {
   const navigate = useNavigate();
   const [login, setLogin] = useState({ email: "", password: "" });
+  const [err, setErr] = useState("");
+
   const addLogin = (e) => {
+    if (!e.target.value) {
+      setErr("");
+    }
     setLogin({ ...login, [e.target.name]: e.target.value });
   };
 
@@ -19,19 +25,21 @@ const Login = () => {
       .then((response) => {
         accountService.saveToken(response.data.token);
         if (accountService.getTokenInfo().userRole === "admin") {
-          navigate("/admin");
+          navigate("/admin/dashboard");
         } else {
           navigate("/reservation");
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setErr(error.response.data.errors[0].msg));
     setLogin({ email: "", password: "" });
   };
 
   return (
     <div className="bg-primary ">
       <Container>
-        <Row className="vh-100 d-flex justify-content-center align-items-center">
+        <Row className=" d-flex justify-content-center py-5 ">
+          {err ? <ErrorFormValidation errs={err} /> : ""}
+
           <Col md={8} lg={6} xs={12}>
             <Card className="px-4">
               <Card.Body>
@@ -80,10 +88,20 @@ const Login = () => {
                     </Form>
                     <div className="mt-3">
                       <p className="mb-0  text-center">
+                        <Link
+                          to="/auth/forgotPassword"
+                          className="text-primary fw-bold"
+                        >
+                          Mot de passe oublier
+                        </Link>
+                      </p>
+                    </div>
+                    <div className="mt-3">
+                      <p className="mb-0  text-center fs-6">
                         Vous n&apos;avez pas de compte?{" "}
                         <Link
                           to="/auth/register"
-                          className="text-primary fw-bold"
+                          className="text-primary fw-bold fs-6"
                         >
                           Inscrivez-vous ici
                         </Link>

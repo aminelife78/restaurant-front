@@ -6,7 +6,7 @@ const Agaleries = () => {
 
   return (
     <>
-    <Nav variant="tabs" >
+    <Nav >
         <Nav.Item>
           <Nav.Link as={NavLink} to="/admin/galerie/liste">Liste categories</Nav.Link>
         </Nav.Item>

@@ -4,6 +4,8 @@ import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { galerieservice } from "../../../_services/galerie.services";
 import { categoryContext } from "../../../store/categoryContext";
+import { Container } from "react-bootstrap";
+import ErrorFormValidation from "../../../utils/ErrorFormValidation";
 
 const Gadd = () => {
   const navigate = useNavigate();
@@ -11,8 +13,12 @@ const Gadd = () => {
 
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
+  const [errs, setErrs] = useState("");
 
   const setdata = (e) => {
+    if (!e.target.value) {
+      setErrs("");
+    }
     setTitle(e.target.value);
   };
 
@@ -29,35 +35,38 @@ const Gadd = () => {
     galerieservice
       .addGalerie(formData)
       .then((response) => {
-        galerieContext.getGaleries()
+        galerieContext.getGaleries();
         navigate("/admin/galerie/liste");
       })
       .catch((error) => {
-        console.log(error);
+        setErrs(error.response.data.errors[0].msg);
       });
   };
 
   return (
-    <>
-      <div className="container mt-3">
-        <h1>Upload Your Img Here</h1>
+    <Container className=" w-50 mt-3">
+      {errs ? <ErrorFormValidation errs={errs} /> : ""}
 
-        <Form onSubmit={addPhotos}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>title</Form.Label>
-            <Form.Control type="text" name="title" onChange={setdata} />
-          </Form.Group>
+      <Form onSubmit={addPhotos}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Titre</Form.Label>
+          <Form.Control type="text" name="title" onChange={setdata} required />
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Select Your Image</Form.Label>
-            <Form.Control type="file" name="image" onChange={setimgfile} />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-      </div>
-    </>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Image</Form.Label>
+          <Form.Control
+            type="file"
+            name="image"
+            onChange={setimgfile}
+            required
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </Container>
   );
 };
 

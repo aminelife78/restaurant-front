@@ -1,15 +1,15 @@
-import React, { Fragment } from "react";
-import { Spinner } from "react-bootstrap";
-import "./Global.scss";
+import React from "react";
+import { Container } from "react-bootstrap";
+import {FadeLoader} from "react-spinners";
 
-const Loader = ({ loadingMsg, styling }) => {
+
+const Loader = () => {
   return (
-    <>
-    <p>Wait...</p>
-    <Spinner animation="border" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </Spinner>
-    </>
+    <Container className="d-flex justify-content-center py-5">
+      <div className="mx-auto" >
+          <FadeLoader color="#36d7b7"  />
+      </div>
+    </Container>
   );
 };
 

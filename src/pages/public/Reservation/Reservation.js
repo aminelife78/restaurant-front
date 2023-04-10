@@ -1,9 +1,17 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Container } from "react-bootstrap";
 import Title from "../../../components/public/Global/Title";
 import FormReservation from "../../../components/public/Reservation/FormReservation";
 
+
+
 const Reservation = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  
+    
+  }, [])
+
   return (
     <>
       <Title title="Réservation" />

@@ -1,5 +1,4 @@
-import { Col, Row } from "react-bootstrap";
-import header from "../../../images/header.WebP";
+import { Col, Container, Row } from "react-bootstrap";
 import "./homeComponent.scss"
 
 
@@ -7,22 +6,23 @@ import "./homeComponent.scss"
 const Header = () => {
   
   return (
-      <Row>
-        <Col>
-          <img
-            className="img-fluid w-100 vh-100  d-block "
-            src={header}
-            alt="header"
-          />
-        </Col>
-      
-        <Col className=" position_text">
-            <h1 className="text-white fs-1 fw-bold text-center">Ahmed Kitchen</h1>
-            <p className="text-white fs-4 text-center">Venez comme vous êtes</p>
+    <Container fluid>
+      <Row className="min-vw-100">
+             
+        <Col sm="12"  className=" text-header img-header">
+            <h1 className="w-100 ">Bienvenue<br /> Restaurant Ahmed</h1>
+            <div className="separator mx-auto my-4"></div>
+            <p className="w-100">
+
+            <small
+              >Une cuisine riche en gôuts et saveurs de la méditéranée</small
+            >
+          </p>
         </Col>
       
       
       </Row>
+      </Container>
   )
 };
 

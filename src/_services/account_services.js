@@ -22,6 +22,43 @@ let register = (dataUsers) => {
 };
 
 /**
+ * Connexion vers l'API
+ * @param {object} forgot password
+ *
+ * @returns {Promise}
+ */
+
+let forgot = (data) => {
+  return Axios.post("/api/v1/auth/forgotPassword", data);
+};
+
+/**
+ * Connexion vers l'API
+ * @param {object} verify Password Reset Code
+ *
+ * @returns {Promise}
+ */
+
+let verifyPassResetCode = (data) => {
+  return Axios.post("/api/v1/auth/verifyResetCode", data);
+};
+
+/**
+ * Connexion vers l'API
+ * @param {object} reset Password
+ *
+ * @returns {Promise}
+ */
+
+let resetPassword = (data) => {
+  return Axios.post("/api/v1/auth/resetPassword", data);
+};
+
+// contact
+let contact = (datas) => {
+  return Axios.post("/api/v1/auth/contact", datas);
+};
+/**
  * Sauvegarde du token dans le localStorage
  * @param {string} token
  */
@@ -70,4 +107,8 @@ export const accountService = {
   getToken,
   getTokenInfo,
   register,
+  forgot,
+  verifyPassResetCode,
+  resetPassword,
+  contact,
 };

@@ -78,7 +78,7 @@
 // methode 2
 
 import React, { useContext } from "react";
-import {  Table } from "react-bootstrap";
+import { Col, Container, Row, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { galerieservice } from "../../../_services/galerie.services";
 import { categoryContext } from "../../../store/categoryContext";
@@ -96,61 +96,79 @@ const Gliste = () => {
       .deleteGalerie(index)
       .then((response) => {
         galerieContext.getGaleries();
-       
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-   // modifier une image
-   const updateImage = (index) => {
+  // modifier une image
+  const updateImage = (index) => {
     navigate(`/admin/galerie/update/${index}`);
   };
 
   return (
-    <Table>
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>Titre</th>
-          <th>image</th>
-          <th>Modifier</th>
-          <th>Suprimer</th>
-        </tr>
-      </thead>
-      <tbody>
-        {galerieContext.loading ? (
-          <tr>
-            <td>pas de données</td>
-          </tr>
-        ) : (
-          galerieContext.photos.map((photo) => {
-            return (
-              <tr key={photo.id}>
-                <td>{photo.id}</td>
-                <td>{photo.title}</td>
-
-                <td>
-                  <img width="40" height="40" src={photo.image} alt="img" />
-                </td>
-
-                <td>
-                  <Buttons color="primary" handleBtn={updateImage} idx={photo.id}>
-                    <BsPencilSquare />
-                  </Buttons>
-                </td>
-                <td>
-                  <Buttons handleBtn={deleteImage} idx={photo.id} color="danger">
-                    <BsTrashFill />
-                  </Buttons>
-                </td>
+    <Container>
+      <Row className="m-2">
+        <Col className="overflow-auto " xs="12">
+          <Table>
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>Titre</th>
+                <th>image</th>
+                <th>Modifier</th>
+                <th>Suprimer</th>
               </tr>
-            );
-          })
-        )}
-      </tbody>
-    </Table>
+            </thead>
+            <tbody>
+              {galerieContext.loading ? (
+                <tr>
+                  <td>pas de données</td>
+                </tr>
+              ) : (
+                galerieContext.photos.map((photo) => {
+                  return (
+                    <tr key={photo.id}>
+                      <td>{photo.id}</td>
+                      <td>{photo.title}</td>
+
+                      <td>
+                        <img
+                          width="40"
+                          height="40"
+                          src={photo.image}
+                          alt="img"
+                        />
+                      </td>
+
+                      <td>
+                        <Buttons
+                          color="primary"
+                          handleBtn={updateImage}
+                          idx={photo.id}
+                        >
+                          <BsPencilSquare />
+                        </Buttons>
+                      </td>
+                      <td>
+                        <Buttons
+                          handleBtn={deleteImage}
+                          idx={photo.id}
+                          color="dark"
+                        >
+                          <BsTrashFill />
+                        </Buttons>
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
+            </tbody>
+          </Table>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

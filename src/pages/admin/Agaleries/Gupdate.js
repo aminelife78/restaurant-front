@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import { useNavigate, useParams } from "react-router-dom";
 import { galerieservice } from "../../../_services/galerie.services";
 import { categoryContext } from "../../../store/categoryContext";
+import ErrorFormValidation from "../../../utils/ErrorFormValidation";
 
 
 
@@ -18,6 +19,8 @@ const Gupdate = () => {
   // const [data, setData] = useState();
   const [title,setTitle] = useState("");
   const [image,setImage] = useState("");
+  const [errs, setErrs] = useState("");
+
   
 
   useEffect(
@@ -35,6 +38,9 @@ const Gupdate = () => {
 
 
   const setdata = (e)=>{
+    if (!e.target.value) {
+      setErrs("");
+    }
     setTitle(e.target.value)
    
   }
@@ -47,6 +53,7 @@ const Gupdate = () => {
 
   const onsubmit = (e) => {
     e.preventDefault();
+  
     let formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
@@ -60,25 +67,26 @@ const Gupdate = () => {
         navigate("/admin/galerie/liste");
       })
       .catch((error) => {
-        console.log(error);
+        setErrs(error.response.data.errors[0].msg)
+
       });
   };
 
   
   return (
     <>
-      <div className="container mt-3">
-        <h1>Upload Your Img Here</h1>
+      <div className="container w-50 mt-3">
+      {errs ? <ErrorFormValidation errs={errs} /> : ""}
 
         <Form onSubmit={onsubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>title</Form.Label>
-            <Form.Control type="text" name="title" value={title}  onChange={setdata} />
+            <Form.Label>titre</Form.Label>
+            <Form.Control type="text" name="title" value={title}  onChange={setdata} required/>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Select Your Image</Form.Label>
-            <Form.Control type="file" name="image" onChange={setimgfile} />
+            <Form.Label>Image</Form.Label>
+            <Form.Control type="file" name="image" onChange={setimgfile} required />
           </Form.Group>
           <Button variant="primary" type="submit">
             Submit

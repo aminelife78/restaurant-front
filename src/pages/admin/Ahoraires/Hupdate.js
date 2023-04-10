@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
+import ErrorFormValidation from "../../../utils/ErrorFormValidation";
 import { heureservice } from "../../../_services/heure.services";
 
 const Hupdate = () => {
@@ -10,7 +11,7 @@ const Hupdate = () => {
   const [jours, setJours] = useState();
   const [heure_matin, setHeure_matin] = useState();
   const [heure_soir, setHeure_soir] = useState();
-  const [err, setErr] = useState("");
+  const [errs, setErrs] = useState("");
 
   // recuperer liste horaires
   useEffect(
@@ -38,14 +39,16 @@ const Hupdate = () => {
         setHeure_matin("");
         setHeure_soir("");
         setJours("");
-        setErr("");
+        setErrs("");
         navigate("/admin/horaires/liste");
       })
-      .catch((error) => setErr(error.response.data.errors[0].msg));
+      .catch((error) => setErrs(error.response.data.errors[0].msg));
   };
 
   return (
-    <Container className="w-50 h-50 mt-5">
+    <Container className="w-50 mt-5">
+    {errs ? <ErrorFormValidation errs={errs} /> : ""}
+
       <Form onSubmit={onsubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control
@@ -56,7 +59,6 @@ const Hupdate = () => {
             value={jours}
             disabled
           />
-          <Form.Text className="text-muted text-secondary">{err}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control
@@ -66,7 +68,6 @@ const Hupdate = () => {
             onChange={(e) => setHeure_matin(e.target.value)}
             value={heure_matin}
           />
-          <Form.Text className="text-muted text-secondary">{err}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control
@@ -76,7 +77,6 @@ const Hupdate = () => {
             onChange={(e) => setHeure_soir(e.target.value)}
             value={heure_soir}
           />
-          <Form.Text className="text-muted text-secondary">{err}</Form.Text>
         </Form.Group>
 
         <Button variant="primary" type="submit" className="my-4">
