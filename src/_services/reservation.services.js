@@ -3,9 +3,9 @@ import Axios from "./caller.services";
 
 // get all reservation
 
-let getAllReservation = (date,heure) => {
+let getAllReservation = (date,nbrCouverts) => {
   if(date && date){
-    return Axios.get(`/api/v1/reservations?date=${date}&heure=${heure}`);
+    return Axios.get(`/api/v1/reservations?date=${date}&nombreCouverts=${nbrCouverts}`);
   }else{
     return Axios.get(`/api/v1/reservations`);
 

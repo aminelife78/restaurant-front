@@ -1,18 +1,18 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 
-const HeureReservation = ({datas,handleDatas,heure}) => {
+const HeureReservation = ({handleHeure,heure}) => {
   return (
    <>
    <Button
         
-        onClick={handleDatas}
+        onClick={(e)=>{handleHeure(e.target.value)}}
         name="heure"
-        value={heure.time}
+        value={heure}
         type="button"
         className=" bg-outline-primary  me-2 mb-2 "
       >
-        {heure.time.toString()}
+        {heure.toString()}
     </Button>
    
    </>

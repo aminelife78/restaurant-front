@@ -1,5 +1,6 @@
 import {  Row, Col, Spinner, Container, Card } from "react-bootstrap";
 import "./Carte.scss";
+import { Fragment } from "react";
 
 const CardListe = ({ datas, loading, err }) => {
   return (
@@ -11,10 +12,10 @@ const CardListe = ({ datas, loading, err }) => {
             datas.map((data) => {
               return (
 
-                <>
+                <Fragment key={data.id}>
                 <Row className="animate__animated animate__slideInUp  border mb-5  ">
                 <Col md="4">
-                    <img src={data.image} class="img-fluid rounded-start" alt="img" />
+                    <img src={data.image} className="img-fluid rounded-start" alt="img" />
                 </Col>
                 <Col md="8">
                 <Card.Body className=" ">
@@ -29,7 +30,7 @@ const CardListe = ({ datas, loading, err }) => {
                   </Card.Body>
               </Col>
               </Row>
-              </>
+              </Fragment>
               );
             })
           ) : (

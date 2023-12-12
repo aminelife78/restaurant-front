@@ -6,9 +6,7 @@
   height: 100vh;
   max-height: 100%;
   max-width: 100%;
-  
-  
-  
+
   h1 {
     margin: 0;
     text-align: center;
@@ -36,18 +34,10 @@
   width: 500px;
   object-fit: cover;
 
-
-  &:hover{
+  &:hover {
     object-fit: none;
-
   }
-
 }
-
-
-
-
-
 
 // image reservation
 
@@ -58,14 +48,13 @@
 }
 
 // galerie
-.galerie-content{
+.galerie-content {
   padding: 50px 0;
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
   margin: 0;
-
 }
 
 .card-galerie {
@@ -77,17 +66,14 @@
   padding: 1px;
   margin: 0;
 
-
   img {
     object-fit: cover;
     display: block;
     width: 100%;
     height: 100%;
     margin: 0;
-    
-
   }
-  h5{
+  h5 {
     position: absolute;
     top: 50%;
     color: #fff;
@@ -97,17 +83,14 @@
     opacity: 0;
   }
 
-   &:hover img{
+  &:hover img {
     object-fit: none;
     opacity: 0.4;
   }
 
-  &:hover h5{
+  &:hover h5 {
     opacity: 1;
     font-size: 22px;
     transform: scale(1.4);
   }
-
- 
-
 }

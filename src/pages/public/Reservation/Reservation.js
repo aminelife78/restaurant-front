@@ -1,7 +1,8 @@
 import React,{useEffect} from "react";
 import { Container } from "react-bootstrap";
 import Title from "../../../components/public/Global/Title";
-import FormReservation from "../../../components/public/Reservation/FormReservation";
+import ReservationForm from "../../../components/public/Reservation/ReservationForm";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -14,9 +15,13 @@ const Reservation = () => {
 
   return (
     <>
+    <Helmet>
+    <title>Réservation</title>
+  
+  </Helmet>
       <Title title="Réservation" />
       <Container className="py-5">
-        <FormReservation />
+        <ReservationForm />
       </Container>
     </>
   );

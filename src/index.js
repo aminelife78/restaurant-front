@@ -5,12 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { HashRouter } from "react-router-dom";
 import { ContexteCtegory } from "./store/categoryContext";
+import {HelmetProvider } from "react-helmet-async";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <HashRouter>
     <ContexteCtegory>
-      <App />
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
     </ContexteCtegory>
   </HashRouter>
 );

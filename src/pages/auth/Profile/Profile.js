@@ -12,14 +12,24 @@ const Profile = () => {
   const [show, setShow] = useState(true)
   useEffect(() => {
     // recuperer le id de client stocket dans le token
-    let { userNom,userEmail,userPhone,userRole} = accountService.getTokenInfo();
+    let { userId,userNom,userEmail,userPhone,userRole,userAllergies,userConvives} = accountService.getTokenInfo();
     // modifier le clients_id dans la réservation
-    setUser({username:userNom, email:userEmail,phone:userPhone,role:userRole});
-    reservationservice.getAllReservation().then(response=>{
+    setUser({id:userId,username:userNom, email:userEmail,phone:userPhone,role:userRole,allergies:userAllergies,nbrConvive:userConvives});
+
+      reservationservice.getAllReservation().then(response=>{
       setReservations(response.data.data)
     })
 
   }, []);
+
+  const allReservations = ()=>{
+    reservationservice.getAllReservation().then(response=>{
+      setReservations(response.data.data)
+    })
+  }
+  useEffect(()=>{
+    allReservations()
+  },[])
   const userReservation = reservations.filter(resr=>{
     return resr.email === user.email
   })
@@ -37,7 +47,7 @@ const Profile = () => {
           <p className="text-primary"  onClick={()=>setShow(false)}>mes reservation</p>
         </Col>
         <Col   className="article mx-5">
-        {show?<ProfileDetail user={user}/> : <ProfileReservation userReservation={userReservation} />}
+        {show?<ProfileDetail user={user}/> : <ProfileReservation userReservation={userReservation} allReservations={allReservations}  />}
           
         </Col> 
       </Row>

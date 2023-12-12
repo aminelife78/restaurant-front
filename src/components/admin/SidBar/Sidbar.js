@@ -15,10 +15,11 @@ import {
 const Sidbar = () => {
   return (
     <Nav className=" flex-column  sidbar-style   p-0 ">
-      <Nav.Link as={NavLink} className="link-style " to="/admin/tables">
+      <Nav.Link as={NavLink} className="link-style  " to="/admin/tables">
         <BiRestaurant className="me-2 fs-5" />
         Table/Couverts
       </Nav.Link>
+      
       <Nav.Link as={NavLink} className="link-style " to="/admin/reservation">
         <BiCalendar className="me-2 fs-5" />
         Réservation

@@ -4,6 +4,7 @@ import Galerie from "../../../components/public/HomeComponents/Galerie";
 import Header from "../../../components/public/HomeComponents/Header";
 import Service from "../../../components/public/HomeComponents/Service";
 import ImageReservation from "../../../components/public/HomeComponents/ImageReservation";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   useEffect(() => {
@@ -13,6 +14,10 @@ const Home = () => {
   }, [])
   return (
     <Fragment>
+    <Helmet>
+    <title>Ahmed-Kitchen</title>
+  
+  </Helmet>
       <Header />
       <About />
       <Galerie />

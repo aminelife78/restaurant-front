@@ -91,7 +91,7 @@ let getToken = () => {
 };
 
 /**
- * Récupération du payload du tkoen
+ * Récupération données du tkoen
  * @returns {object}
  */
 let getTokenInfo = () => {

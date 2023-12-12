@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { accountService } from "../../../_services/account_services";
 import { useNavigate } from "react-router-dom";
 import ErrorFormValidation from "../../../utils/ErrorFormValidation"
+import { Helmet } from "react-helmet-async";
 
 function Register() {
   const navigate = useNavigate();
@@ -49,6 +50,10 @@ function Register() {
 
   return (
     <div className="bg-primary">
+    <Helmet>
+    <title>Inscreption</title>
+  
+  </Helmet>
 
       <Container>
       {err ? <ErrorFormValidation errs={err} /> : ""}

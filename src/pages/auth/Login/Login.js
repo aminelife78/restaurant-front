@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { accountService } from "../../../_services/account_services";
 import { useNavigate } from "react-router-dom";
 import ErrorFormValidation from "../../../utils/ErrorFormValidation";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -36,6 +37,10 @@ const Login = () => {
 
   return (
     <div className="bg-primary ">
+    <Helmet>
+    <title>Authentification</title>
+  
+  </Helmet>
       <Container>
         <Row className=" d-flex justify-content-center py-5 ">
           {err ? <ErrorFormValidation errs={err} /> : ""}

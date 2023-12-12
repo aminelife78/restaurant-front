@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import "./Reservation.scss"
+import "./Reservation.scss";
 import { useNavigate } from "react-router-dom";
 import { Alert, Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { accountService } from "../../../_services/account_services";
@@ -9,8 +9,7 @@ import ErrorFormValidation from "../../../utils/ErrorFormValidation";
 import { Tableservice } from "../../../_services/tables.services";
 import ReservationUsers from "./ReservationUsers";
 import HeureReservation from "./HeureReservation";
-const moment = require('moment');
-
+const moment = require("moment");
 
 const FormReservation = () => {
   const navigate = useNavigate();
@@ -41,6 +40,7 @@ const FormReservation = () => {
     if (!e.target.value) {
       setErrs("");
     }
+
     setDatas({ ...datas, [e.target.name]: e.target.value });
   };
 
@@ -68,7 +68,7 @@ const FormReservation = () => {
   }, []);
 
   const heures_midi = tables.filter((table) => {
-    return table.temps === "midi" ;
+    return table.temps === "midi";
   });
 
   const heures_soir = tables.filter((table) => {
@@ -95,32 +95,46 @@ const FormReservation = () => {
   // envoyé les donnée dans la base de données
   const onSubmit = (e) => {
     e.preventDefault();
+    if (mydate >= moment().format("YYYY-MM-DD")) {
       reservationservice
-      .addReservation(datas)
-      .then((res) => {
-        
-        setErrs("");
-        navigate("/confirmation");
-      })
-      .catch((err) => {
-        err.response.data.message
-          ? setErrs(err.response.data.message)
-          : setErrs(err.response.data.message);
-      });
+        .addReservation(datas)
+        .then((res) => {
+          setErrs("");
+          navigate("/confirmation");
+        })
+        .catch((err) => {
+          console.log(err)
+          err.response.data.message
+            ? setErrs(err.response.data.message)
+            : setErrs(err.response.data.errors[0].msg);
+        });
+    } else {
+      setErrs(
+        "Oups! la date de réservation est incorrecte. Veuillez la modifier."
+      );
+    }
   };
 
   return (
     <>
-      { reservationDispo >= datas.nombre_couverts? "" :  <p className="saisi text-center text-succes fw-bold pb-2">
-      veuillez saisir la date et l&apos;heure pour voir les disponibilité
-    </p>}
+      {reservationDispo >= datas.nombre_couverts ? (
+        ""
+      ) : (
+        <p className="saisi text-center text-succes fw-bold pb-2">
+          veuillez saisir la date et l&apos;heure pour voir les disponibilité
+        </p>
+      )}
       <Form onSubmit={onSubmit} className="w-75 mx-auto">
-        {mydate && myheure && reservationDispo >= 0  &&  
-          <Alert variant="secondary" className="text-center">
-            <span className="fw-bold">{reservationDispo}</span> couverts
-            disponible pour le  { moment(mydate).format('DD-MM-YYYY')} à {myheure}
-          </Alert>
-        }
+        {mydate &&
+          myheure &&
+          reservationDispo >= 0 &&
+          mydate >= moment().format("YYYY-MM-DD") && (
+            <Alert variant="secondary" className="text-center">
+              <span className="fw-bold">{reservationDispo}</span> couverts
+              disponible pour le {moment(mydate).format("DD-MM-YYYY")} à{" "}
+              {myheure}
+            </Alert>
+          )}
         {errs ? <ErrorFormValidation errs={errs} /> : ""}
 
         <Row>
@@ -161,7 +175,7 @@ const FormReservation = () => {
               <Form.Control
                 onChange={handleDatas}
                 name="date"
-                value={ datas.date}
+                value={datas.date}
                 type="date"
                 required
                 min="08-03-2023"
@@ -217,20 +231,19 @@ const FormReservation = () => {
           </Col>
         </Row>
 
-      
         {reservationDispo >= datas.nombre_couverts &&
           !accountService.isLogged() && (
             <ReservationUsers datas={datas} handleDatas={handleDatas} />
           )}
-          {reservationDispo >= datas.nombre_couverts ? (
-            <Button className="mt-4 " type="submit">
+        {reservationDispo >= datas.nombre_couverts ? (
+          <Button className="mt-4 " type="submit">
             Faire une demande de réservation
-            </Button>
-          ) : (
-            <Button className="mt-4 " type="submit" disabled>
-              Faire une demande de réservation
-            </Button>
-          )}
+          </Button>
+        ) : (
+          <Button className="mt-4 " type="submit" disabled>
+            Faire une demande de réservation
+          </Button>
+        )}
       </Form>
     </>
   );

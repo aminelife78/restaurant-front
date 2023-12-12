@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { platservice } from "../../../_services/plats.services";
@@ -7,23 +7,15 @@ import ErrorFormValidation from "../../../utils/ErrorFormValidation";
 
 const CrAdd = () => {
   const navigate = useNavigate();
-  const categoriesContext = useContext(categoryContext)
-  
-
-
+  const categoriesContext = useContext(categoryContext);
   const [titre, setTitre] = useState("");
   const [descreption, setDescreption] = useState("");
   const [prix, setPrix] = useState("");
   const [categories_id, setCategories_id] = useState("");
   const [image, setImage] = useState("");
-
   const [err, setErr] = useState("");
-
- 
-
   const onsubmit = (e) => {
     e.preventDefault();
-
     var formData = new FormData();
     formData.append("image", image);
     formData.append("titre", titre);
@@ -34,23 +26,18 @@ const CrAdd = () => {
     platservice
       .addPlat(formData)
       .then((response) => {
-        categoriesContext.getPlats()
+        categoriesContext.getPlats();
         setErr("");
         navigate("/admin/carte/liste");
-        
       })
       .catch((error) => {
-        
-          setErr(error.response.data.errors[0].msg)
-        
-        
+        setErr(error.response.data.errors[0].msg);
       });
   };
 
-
   return (
     <Container className="w-50 mt-5">
-    {err ? <ErrorFormValidation errs={err} /> : ""}
+      {err ? <ErrorFormValidation errs={err} /> : ""}
 
       <Form onSubmit={onsubmit}>
         <Form.Group className="mb-3" controlId="formBasicTitre">
@@ -119,5 +106,3 @@ const CrAdd = () => {
 };
 
 export default CrAdd;
-
-

@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { accountService } from "../../../_services/account_services";
+import { Helmet } from "react-helmet-async";
 
 function Contact() {
   const prenom = useRef()
@@ -36,6 +37,10 @@ function Contact() {
 
   return (
     <Container className="mt-5  ">
+    <Helmet>
+    <title>Contact</title>
+  
+  </Helmet>
       <Form className="w-50 m-auto" onSubmit={addContact}>
         <Form.Group
           as={Row}

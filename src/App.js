@@ -1,4 +1,3 @@
-import "./style/App.scss";
 import RoutePublic from "./pages/public/RouterPublic";
 import { Routes, Route  } from "react-router-dom";
 import RouterAuth from "./pages/auth/RouterAuth";
